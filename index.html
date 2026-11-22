@@ -1,94 +1,593 @@
 <!doctype html>
 <html lang="tr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rusça Kelime Atölyesi</title>
 <style>
-:root{--bg:#e9e1d7;--ink:#2b2723;--mute:#6c635b;--card:rgba(255,255,255,.72);--line:rgba(43,39,35,.15);--btn:#2d2925;--btn-ink:#f6f1ea;--acc:#8b5b37;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#171412;--ink:#f1ebe3;--mute:#b0a69b;--card:rgba(40,35,31,.8);--line:rgba(241,235,227,.16);--btn:#f1ebe3;--btn-ink:#1d1a17;--acc:#e0ac7c;color-scheme:dark}}
+:root{--bg:#eceff2;--ink:#16202b;--mute:#5d6a78;--card:#fff;--line:#d5dbe2;--btn:#16202b;--btn-ink:#f4f6f8;--acc:#b23a26;--sg:#e0201a;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#10161d;--ink:#eaeef2;--mute:#9aa6b3;--card:#18212b;--line:#2a3643;--btn:#eaeef2;--btn-ink:#10161d;--acc:#f0775f;--sg:#ff5a4d;color-scheme:dark}}
 *{box-sizing:border-box}[hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:max(12px,env(safe-area-inset-top)) 12px 24px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:calc(12px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom))}
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
-.shell{max-width:760px;margin:0 auto}
-h1{font:600 26px/1.1 Georgia,serif;margin:6px 0 12px}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.shell{max-width:720px;margin:0 auto}
+h1{font:600 26px/1.15 Georgia,"Times New Roman",serif;margin:4px 0 12px}
 nav{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;overflow-x:auto;margin-bottom:12px}
-nav button{flex:none;padding:9px 14px;border-radius:999px;font-weight:600;white-space:nowrap}
+nav button{flex:none;padding:9px 16px;border-radius:999px;font-weight:600;white-space:nowrap}
 nav button[aria-current]{background:var(--btn);color:var(--btn-ink)}
-.box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px}
-details{margin-bottom:12px}summary{cursor:pointer;font-weight:700;padding:8px 4px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px}
+details{margin-bottom:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:2px 14px}
+summary{cursor:pointer;font-weight:700;padding:10px 0}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
 .chip{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px}
-.chip[aria-pressed=true]{background:var(--btn);color:var(--btn-ink)}
+.chip[aria-pressed=true]{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
 .btn{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:12px 20px;font-weight:700}
-.btn.p{background:var(--btn);color:var(--btn-ink)}
+.btn.p{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1 1 140px}
-.q{text-align:center;padding:20px 8px;display:flex;flex-direction:column;gap:6px;align-items:center}
-.big{font:500 clamp(32px,10vw,54px)/1.1 Georgia,serif;overflow-wrap:anywhere}
+.q{text-align:center;padding:18px 6px;display:flex;flex-direction:column;gap:6px;align-items:center}
+.big{font:500 clamp(32px,10vw,54px)/1.1 Georgia,"Times New Roman",serif;overflow-wrap:anywhere}
+.sg{color:var(--sg);font-weight:700}
 .sm{color:var(--mute);font-size:13px}.pron{color:var(--acc);font-weight:600}
-.win{width:100%;font:500 26px Georgia,serif;padding:13px 18px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);text-align:center;margin-bottom:12px}
-.fb{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:16px}.fb.no{border-style:dashed}
+.win{width:100%;font:500 26px Georgia,serif;padding:13px 18px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);text-align:center;margin-bottom:12px}
+.fb{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:14px}.fb.no{border:1px dashed var(--acc)}
 .opts{display:grid;gap:10px}
-.opt{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:13px 16px;text-align:left;overflow-wrap:anywhere}
+.opt{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:13px 16px;text-align:left;overflow-wrap:anywhere}
 .opt.ok{background:var(--btn);color:var(--btn-ink)}.opt.bad{border-style:dashed;text-decoration:line-through;opacity:.7}
-.prog{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:6px}.prog b{display:block;height:100%;background:var(--btn)}
+.opt.ok::before{content:"✓ doğru cevap";display:block;font-size:11px;font-weight:700}.opt.bad::before{content:"✗ senin cevabın";display:block;font-size:11px;font-weight:700;text-decoration:none}
+.prog{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:6px}.prog b{display:block;height:100%;background:var(--acc)}
 .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-bottom:10px}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:10px 0}
 table{width:100%;border-collapse:collapse}td,th{padding:8px 10px;text-align:left;border-top:1px solid var(--line);font-size:14px}
 th{border-top:0;background:var(--btn);color:var(--btn-ink);font-size:12px}
 td.r{font:600 19px Georgia,serif}td.p{color:var(--acc);font-weight:600}
-input[type=search]{width:100%;font:inherit;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);margin-bottom:10px}
-.tip{border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:10px 14px;margin:10px 0;font-size:14px}
-h2{font:500 28px/1.1 Georgia,serif;margin:14px 0 8px}
+input[type=search]{width:100%;font:inherit;padding:11px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);margin-bottom:10px}
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mcol{display:flex;flex-direction:column;gap:10px}
-.m{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:12px 8px;min-height:62px;text-align:center;overflow-wrap:anywhere;font-weight:500}
+.m{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 8px;min-height:62px;text-align:center;overflow-wrap:anywhere;font-weight:500}
+.nh{font:700 12px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);margin:14px 0 4px}.nl{margin:0;padding-left:18px}.nl li{margin:5px 0;overflow-wrap:anywhere}
+.lt{display:inline-block;min-width:34px;padding:4px 6px;margin:2px;border-radius:8px;border:1px solid var(--line);text-align:center;font:600 18px Georgia,serif}.lt.g{background:var(--btn);color:var(--btn-ink)}.lt.b{border:1px dashed var(--acc)}
 .m.sel{background:var(--btn);color:var(--btn-ink)}.m.done{opacity:.3;text-decoration:line-through;pointer-events:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head>
 <body><div class="shell">
 <h1>Рус · Rusça Kelime Atölyesi</h1>
 <nav id="nav"></nav>
 <details id="filter"><summary>Konular <span class="sm" id="cnt"></span></summary><div id="chips"></div></details>
-<main class="box" id="stage">Yükleniyor…</main>
+<main class="box" id="stage"></main>
 </div>
 <script>
+const CATS=[["a1","Resimli Kitap","Eril isimler"],["a2","Resimli Kitap","Dişil isimler"],["a3","Resimli Kitap","Nötr isimler"],["a4","Resimli Kitap","-Ь ile biten isimler"],["a5","Resimli Kitap","İstisnalar ve canlılar"],["a6","Resimli Kitap","Meslek isimleri"],["a7","Resimli Kitap","Yabancı kökenli"],["a8","Resimli Kitap","Çoğul kuralları"],["a9","Resimli Kitap","Nötr çoğullar"],["a10","Resimli Kitap","Özel çoğullar"],["a11","Resimli Kitap","Yalnızca tekil"],["a12","Resimli Kitap","Yalnızca çoğul"],["b1","Resimsiz Kitap","İnsanlar ve meslekler"],["b2","Resimsiz Kitap","Mekanlar ve eşyalar"],["b3","Resimsiz Kitap","Akademik kavramlar"],["b4","Resimsiz Kitap","Fiiller"],["b5","Resimsiz Kitap","Zarflar ve zamanlar"],["b6","Resimsiz Kitap","Haftanın günleri"],["b7","Resimsiz Kitap","Zamirler ve bağlaçlar"]].map(c=>({id:c[0],g:c[1],n:c[2]}));
+/* Yeni kelime eklemek için: ilgili "#konu" başlığının altına "rusça|okunuş|türkçe" satırı ekle. */
+const RAW=`#a1
+дом|dom|ev / bina
+трамвай|tramvay|tramvay
+спутник|sputnik|uydu
+мальчик|mal'çik|erkek çocuk
+школьник|şkol'nik|erkek öğrenci
+Олег|Oleg|Oleg (erkek ismi)
+орех|oreh|fındık / ceviz
+карандаш|karandaş|kurşun kalem
+нож|noj|bıçak
+мяч|myaç|top
+плащ|plaşç|yağmurluk
+хлеб|hleb|ekmek
+остров|ostrov|ada
+поезд|poyezd|tren
+глаз|glaz|göz
+стол|stol|masa
+костюм|kostyum|takım elbise
+магазин|magazin|mağaza
+театр|teatr|tiyatro
+автобус|avtobus|otobüs
+лес|les|orman
+космонавт|kosmonavt|astronot
+шарф|şarf|atkı
+месяц|mesyats|ay (zaman)
+музей|muzey|müze
+герой|geroy|kahraman
+урожай|urojay|hasat / ürün
+чай|çay|çay
+билет|bilet|bilet
+вагон|vagon|vagon
+вокзал|vokzal|tren garı
+вопрос|vopros|soru
+врач|vraç|doktor
+вход|vhod|giriş
+герб|gerb|amblem / arma
+журнал|jurnal|dergi
+завод|zavod|fabrika
+класс|klass|sınıf
+ключ|klyuç|anahtar
+лимон|limon|limon
+памятник|pamyatnik|anıt / heykel
+сахар|sahar|şeker
+трактор|traktor|traktör
+#a2
+картина|kartina|tablo / resim
+семья|sem'ya|aile
+учительница|uçitel'nitsa|kadın öğretmen
+ученица|uçenitsa|kız öğrenci
+девочка|devoçka|kız çocuk
+рыба|ryba|balık
+книга|kniga|kitap
+доска|doska|yazı tahtası
+звезда|zvezda|yıldız
+женщина|jenşçina|kadın
+луна|luna|ay (gök cismi)
+кухня|kuhnya|mutfak
+понедельник|ponedel'nik|Pazartesi
+вторник|vtornik|Salı
+среда|sreda|Çarşamba
+четверг|çetverg|Perşembe
+пятница|pyatnitsa|Cuma
+суббота|subbota|Cumartesi
+воскресенье|voskresen'ye|Pazar
+демонстрация|demonstratsiya|gösteri / miting
+линия|liniya|çizgi / hat
+химия|himiya|kimya
+география|geografiya|coğrafya
+история|istoriya|tarih
+буква|bukva|harf
+вода|voda|su
+голова|golova|baş / kafa
+задача|zadaça|problem / alıştırma
+комната|komnata|oda
+работа|rabota|iş / çalışma
+лампа|lampa|lamba
+машина|maşina|araba
+страна|strana|ülke
+улица|ulitsa|sokak / cadde
+деревня|derevnya|köy
+земля|zemlya|toprak / dünya
+песня|pesnya|şarkı
+статья|stat'ya|makale
+идея|ideya|fikir
+армия|armiya|ordu
+организация|organizatsiya|organizasyon
+профессия|professiya|meslek
+станция|stantsiya|istasyon
+фамилия|familiya|soyadı
+#a3
+письмо|pis'mo|mektup
+платье|plat'ye|elbise
+окно|okno|pencere
+кресло|kreslo|tekli koltuk
+кольцо|kol'tso|yüzük
+лицо|litso|yüz / çehre
+лекарство|lekarstvo|ilaç
+дерево|derevo|ağaç
+яблоко|yabloko|elma
+яйцо|yaytso|yumurta
+колесо|koleso|tekerlek
+озеро|ozero|göl
+солнце|solntse|güneş
+море|more|deniz
+поле|pole|tarla
+здание|zdaniye|bina
+объявление|ob''yavleniye|ilan / duyuru
+расписание|raspisaniye|tarife / ders programı
+знамя|znamya|sancak / bayrak
+имя|imya|ad / isim
+пламя|plamya|alev
+время|vremya|zaman
+дело|delo|iş / konu
+зеркало|zerkalo|ayna
+лето|leto|yaz
+место|mesto|yer
+слово|slovo|kelime / söz
+государство|gosudarstvo|devlet
+единство|yedinstvo|birlik
+искусство|iskusstvo|sanat
+качество|kaçestvo|kalite
+производство|proizvodstvo|üretim
+сердце|serdtse|kalp
+счастье|sçast'ye|mutluluk
+здоровье|zdorov'ye|sağlık
+горе|gore|keder
+училище|uçilişçe|meslek okulu
+внимание|vnimaniye|dikkat
+движение|dvijeniye|hareket / trafik
+занятие|zanyatiye|ders / etkinlik
+решение|reşeniye|karar / çözüm
+собрание|sobraniye|toplantı
+#a4
+учитель|uçitel'|öğretmen
+Кремль|Krem-l'|Kremlin
+портфель|portfel'|evrak çantası
+словарь|slovar'|sözlük
+календарь|kalendar'|takvim
+корабль|korabl'|gemi
+рояль|royal'|piyano
+дождь|dojd'|yağmur
+голубь|golub'|güvercin
+лагерь|lager'|kamp
+рубль|rubl'|ruble
+гость|gost'|misafir
+день|den'|gün
+зверь|zver'|vahşi hayvan
+картофель|kartofel'|patates
+кашель|kaşel'|öksürük
+контроль|kontrol'|kontrol
+ноль|nol'|sıfır
+огонь|ogon'|ateş
+путь|put'|yol
+секретарь|sekretar'|sekreter
+уголь|ugol'|kömür
+фестиваль|festival'|festival
+мать|mat'|anne
+дочь|doç'|kız evlat
+дверь|dver'|kapı
+тетрадь|tetrad'|defter
+медаль|medal'|madalya
+кровать|krovat'|yatak
+ночь|noç'|gece
+осень|osen'|sonbahar
+соль|sol'|tuz
+лошадь|loşad'|at
+нефть|neft'|petrol
+площадь|ploşçad'|meydan
+цепь|tsep'|zincir
+болезнь|bolezn'|hastalık
+вещь|veşç'|eşya
+власть|vlast'|iktidar
+жизнь|jizn'|hayat
+любовь|lyubov'|aşk / sevgi
+молодёжь|molodëj|gençlik
+память|pamyat'|hafıza
+помощь|pomoşç'|yardım
+радость|radost'|sevinç
+речь|reç'|konuşma
+роль|rol'|rol
+степь|step'|bozkır
+цель|tsel'|hedef
+часть|çast'|parça
+#a5
+мужчина|mujçina|adam / erkek
+юноша|yunoşa|delikanlı
+папа|papa|baba
+дедушка|deduşka|dede
+дядя|dyadya|amca / dayı
+ребёнок|rebënok|çocuk
+котёнок|kotënok|kedi yavrusu
+телёнок|telënok|buzağı
+цыплёнок|tsıplënok|civciv
+медвежонок|medvejonok|ayı yavrusu
+собака|sobaka|köpek
+бык|bık|boğa
+корова|korova|inek
+петух|petuh|horoz
+курица|kuritsa|tavuk
+слон|slon|fil
+обезьяна|obez'yana|maymun
+дитя|ditya|evlat / çocuk
+животное|jivotnoye|hayvan
+#a6
+тракторист|traktorist|erkek traktörcü
+трактористка|traktoristka|kadın traktörcü
+архитектор|arhitektor|mimar
+агроном|agronom|ziraat mühendisi
+профессор|professor|profesör
+водитель|voditel'|şoför / sürücü
+кассир|kassir|kasiyer
+почтальон|poştal'yon|postacı
+фотограф|fotograf|fotoğrafçı
+опытный врач|opıtnıy vraç|deneyimli doktor
+молодой агроном|molodoy agronom|genç ziraat mühendisi
+#a7
+Хосе|Hose|Jose
+Гёте|Gëte|Goethe
+Неру|Neru|Nehru
+Токио|Tokio|Tokyo
+Капри|Kapri|Capri
+Эмили|Emili|Emily
+Кармен|Karmen|Carmen
+Жени|Jeni|Jenny
+Виардо|Viardo|Viardot
+Миссисипи|Missisipi|Mississippi
+Юманите|Yumanite|L'Humanité
+пальто|pal'to|palto
+шоссе|şosse|otoyol / karayolu
+кино|kino|sinema
+#a8
+столы|stolı|masalar
+картины|kartinı|tablolar / resimler
+рубли|rubli|rubleler
+двери|dveri|kapılar
+трамваи|tramvai|tramvaylar
+песни|pesni|şarkılar
+линии|linii|çizgiler / hatlar
+мальчики|mal'çiki|erkek çocuklar
+девочки|devoçki|kız çocuklar
+ноги|nogi|bacaklar / ayaklar
+орехи|orehi|fındıklar / cevizler
+мячи|myaçi|toplar
+плащи|plaşçi|yağmurluklar
+ножи|noji|bıçaklar
+карандаши|karandaşi|kurşun kalemler
+#a9
+окна|okna|pencereler
+письма|pis'ma|mektuplar
+моря|morya|denizler
+поля|polya|tarlalar
+объявления|ob''yavleniya|ilanlar / duyurular
+знамёна|znamëna|sancaklar / bayraklar
+времена|vremena|zamanlar
+имена|imena|isimler / adlar
+глаза|glaza|gözler
+номера|nomera|numaralar / otel odaları
+паспорта|pasporta|pasaportlar
+директора|direktora|müdürler / direktörler
+мастера|mastera|ustalar
+повара|povara|aşçılar
+доктора|doktora|doktorlar
+профессора|professora|profesörler
+адреса|adresa|adresler
+вечера|veçera|akşamlar
+голоса|golosa|sesler
+цвета|tsveta|renkler
+холода|holoda|soğuklar
+учителя|uçitelya|öğretmenler
+якоря|yakorya|çapalar
+города|goroda|şehirler
+провода|provoda|kablolar / teller
+поезда|poyezda|trenler
+луга|luga|çayırlar / meralar
+берега|berega|sahiller / kıyılar
+дома|doma|evler
+острова|ostrova|adalar
+#a10
+стулья|stul'ya|sandalyeler
+листья|list'ya|bitki yaprakları
+деревья|derev'ya|ağaçlar
+друзья|druz'ya|arkadaşlar
+сыновья|sınov'ya|oğullar
+братья|brat'ya|erkek kardeşler
+крылья|krıl'ya|kanatlar
+перья|per'ya|tüyler / kalem uçları
+крестьяне|krest'yane|köylüler
+англичане|angliçane|İngilizler
+граждане|grajdane|vatandaşlar
+болгары|bolgarı|Bulgarlar
+татары|tatarı|Tatarlar
+цыгане|tsıgane|Romanlar / Çingeneler
+матери|materi|anneler
+дочери|doçeri|kız evlatlar
+дети / ребята|deti / rebyata|çocuklar / gençler
+люди|lyudi|insanlar
+цветы|tsvety|çiçekler
+яблоки|yabloki|elmalar
+суда|suda|gemiler
+листы|listı|kâğıt sayfaları
+#a11
+железо|jelëzo|demir
+медь|med'|bakır
+алюминий|alyuminiy|alüminyum
+кислород|kislorod|oksijen
+молоко|moloko|süt
+сыр|sır|peynir
+мясо|myaso|et
+масло|maslo|tereyağı / sıvı yağ
+одежда|odejda|giysi / giyecek
+обувь|obuv'|ayakkabı
+посуда|posuda|mutfak eşyaları
+мебель|mebel'|mobilya
+капуста|kapusta|lahana
+свёкла|svëkla|pancar
+морковь|morkov'|havuç
+лук|luk|soğan
+чеснок|çesnok|sarımsak
+виноград|vinograd|üzüm
+малина|malina|ahududu
+#a12
+ножницы|nojnıtsı|makas
+очки|oçki|gözlük
+брюки|bryuki|pantolon
+весы|vesı|terazi / tartı
+деньги|den'gi|para
+ворота|vorota|bahçe / kale kapısı
+часы|çası|saat (kol / duvar)
+санки|sanki|kızak
+чернила|çernila|mürekkep
+духи|duhi|parfüm
+консервы|konservı|konserve
+сутки|sutki|24 saat / bir gün-gece
+каникулы|kanikulı|okul tatili
+переговоры|peregovorı|müzakereler
+радио|radio|radyo
+метро|metro|metro
+кафе|kafe|kafe
+такси|taksi|taksi
+жюри|jyuri|jüri
+меню|menyu|menü
+интервью|interv'yu|mülakat / röportaj
+пианино|pianino|piyano
+маршрутное такси|marşrutnoye taksi|dolmuş / hatlı taksi
+#b1
+дети|deti|çocuklar
+человек|çelovek|insan
+брат|brat|erkek kardeş
+сестра|sestra|kız kardeş
+сёстры|sëstrı|kız kardeşler
+отец|otets|baba
+сын|sın|oğul
+друг|drug|arkadaş / dost
+товарищ|tavarişç|yoldaş
+студент|student|erkek üniversite öğrencisi
+студентка|studentka|kız üniversite öğrencisi
+ученик|uçenik|okul öğrencisi (erkek)
+преподаватель|prepodavatel'|öğretim görevlisi
+инженер|injener|mühendis
+лаборант|laborant|laborant
+#b2
+город|gorod|şehir
+школа|şkola|okul
+университет|universitet|üniversite
+аудитория|auditoriya|derslik / amfi
+лаборатория|laboratoriya|laboratuvar
+общежитие|obşçejitiye|öğrenci yurdu
+киоск|kiosk|büfe / stant
+фабрика|fabrika|fabrika
+парк|park|park
+сад|sad|bahçe
+мост|most|köprü
+стадион|stadion|stadyum
+бассейн|basseyin|havuz
+стул|stul|sandalye
+шкаф|şkaf|dolap / gardırop
+ваза|vaza|vazo
+учебник|uçebnik|ders kitabı
+газета|gazeta|gazete
+ручка|ruçka|kalem (tükenmez / dolma)
+конверт|konvert|mektup zarfı
+телевизор|televizor|televizyon
+магнитофон|magnitofon|teyp
+марка|marka|posta pulu
+фотография|fotografiya|fotoğraf
+фильм|fil'm|film
+#b3
+урок|urok|ders
+текст|tekst|metin
+роман|roman|roman
+рассказ|raskaz|hikaye
+предложение|predlojeniye|cümle
+правило|pravilo|kural
+упражнение|uprajneniye|alıştırma
+глагол|glagol|fiil
+алфавит|alfavit|alfabe
+ответ|otvet|cevap / yanıt
+диалог|dialog|diyalog
+диктант|diktant|dikte / yazılı çalışma
+лекция|lektsiya|konferans / ders anlatımı
+экскурсия|ekskursiya|gezi / şehir turu
+ошибка|oşibka|hata / yanlış
+домашнее задание|domaşneye zadaniye|ev ödevi
+язык|yazık|dil
+русский язык|russkiy yazık|Rusça
+английский язык|angliyskiy yazık|İngilizce
+шахматы|şahmatı|satranç
+футбол|futbol|futbol
+теннис|tennis|tenis
+#b4
+читать|çitat'|okumak
+писать|pisat'|yazmak
+повторять|povtoryat'|tekrar etmek
+работать|rabotat'|çalışmak
+отдыхать|otdıhat'|dinlenmek / tatil yapmak
+гулять|gulyat'|gezmek / dolaşmak
+знать|znat'|bilmek
+слушать|sluşat'|dinlemek
+понимать|ponimat'|anlamak
+отвечать|otveçat'|cevap vermek
+спрашивать|spraşivat'|sormak
+изучать|izuçat'|öğrenmek / incelemek
+учить|uçit'|ders çalışmak / ezberlemek
+объяснять|ob''yasnyat'|açıklamak
+проверять|proveryat'|kontrol etmek
+рассказывать|rasskazıvat'|anlatmak / bahsetmek
+готовить|gotovit'|hazırlamak / pişirmek
+завтракать|zavtrakat'|kahvaltı yapmak
+обедать|obedat'|öğle yemeği yemek
+ужинать|ujinat'|akşam yemeği yemek
+говорить|govorit'|konuşmak
+разговаривать|razgovarivat'|sohbet etmek
+смотреть|smotret'|izlemek / bakmak
+играть|igrat'|oynamak
+думать|dumat'|düşünmek
+идти|idti|gitmek (yürüyerek)
+заниматься|zanimat'sya|ders çalışmak / meşgul olmak
+сидеть|sitet'|oturmak
+#b5
+хорошо|horoşo|iyi / güzel
+плохо|ploho|kötü
+быстро|bıstro|hızlı
+медленно|medlenno|yavaş
+громко|gromko|yüksek sesle
+тихо|tiho|alçak sesle / sessizce
+правильно|pravil'no|doğru
+неправильно|nepravil'no|yanlış
+внимательно|vnimatel'no|dikkatle
+невнимательно|nevnimatel'no|dikkatsizce
+интересно|interesno|ilginç
+отлично|otliçno|mükemmel / harika
+раньше|ran'şe|eskiden / önceden
+сейчас|seyças|şimdi / şu an
+потом|potom|sonra
+сегодня|segodnya|bugün
+вчера|vçera|dün
+завтра|zavtra|yarın
+утром|utrom|sabah / sabahleyin
+днём|dnëm|öğleyin / gündüz
+вечером|veçerom|akşam / akşamleyin
+рано|rano|erken
+поздно|pozdno|geç
+немного|nemnogo|biraz
+обычно|obıçno|genellikle
+здесь|zdes'|burada
+там|tam|orada
+справа|sprava|sağda
+слева|sleva|solda
+по-русски|po-russki|Rusça (konuşmak / yazmak)
+по-английски|po-angliyski|İngilizce (konuşmak / yazmak)
+по-французски|po-frantsuzski|Fransızca (konuşmak / yazmak)
+#b6
+в понедельник|v ponedel'nik|Pazartesi günü
+во вторник|vo vtornik|Salı günü
+в среду|v sredu|Çarşamba günü
+в четверг|v çetverg|Perşembe günü
+в пятницу|v pyatnitsu|Cuma günü
+в субботу|v subbotu|Cumartesi günü
+в воскресенье|v voskresen'ye|Pazar günü
+#b7
+я / ты|ya / tı|ben / sen
+он / она / оно|on / ona / ono|o (eril / dişil / nötr)
+мы / вы / они|mı / vı / oni|biz / siz / onlar
+мой / моя / моё|moy / moya / moyo|benim (eril / dişil / nötr)
+твой / твоя / твоё|tvoy / tvoya / tvoyo|senin (eril / dişil / nötr)
+наш / наша / наше|naş / naşa / naşe|bizim (eril / dişil / nötr)
+ваш / ваша / ваше|vaş / vaşa / vaşe|sizin (eril / dişil / nötr)
+кто?|kto?|kim?
+что?|çto?|ne?
+как?|kak?|nasıl?
+когда?|kogda?|ne zaman?
+это|eto|bu / bunlar
+да / нет|da / net|evet / hayır
+не|ne|değil
+а|a|ise / ve (karşılaştırma)
+но|no|ama / fakat
+тоже|toje|de / da / ayrıca
+после (+ Genitive)|posle|-den/-dan sonra`;
+
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const norm=s=>String(s).toLowerCase().replace(/\u0301/g,'').replace(/ё/g,'е').replace(/\([^)]*\)/g,' ').replace(/[?!.,;:«»"]/g,'').replace(/\s+/g,' ').trim();
-let WORDS,CATS,RULES,ruleId='',kind='word',mode='write';const sel=new Set();
-const TABS=[['write','Yazma'],['cards','Kartlar'],['test','Test'],['match','Eşleştirme'],['rules','Kurallar'],['list','Liste']];
-const save=()=>{try{localStorage.setItem('rk4',JSON.stringify({mode,sel:[...sel]}))}catch(e){}};
-const pool=()=>{const seen=new Set();return WORDS.filter(w=>w.c.some(c=>sel.has(c))).filter(w=>{const k=w.tr.toLowerCase()+'|'+norm(w.ru);if(seen.has(k))return false;seen.add(k);return true})};
-const answers=w=>{const s=new Set();WORDS.filter(x=>x.tr.toLowerCase()===w.tr.toLowerCase()).forEach(x=>{s.add(norm(x.ru));x.ru.split('/').forEach(p=>s.add(norm(p)))});s.delete('');return s};
+const ru=s=>esc(s).replace(/[ьъЬЪ]/g,m=>`<span class="sg">${m}</span>`);
+const lc=s=>s.toLocaleLowerCase('tr');
+const WORDS=[];let cc=null;
+RAW.split('\n').forEach(l=>{l=l.trim();if(!l)return;if(l[0]==='#'){cc=l.slice(1);return}const p=l.split('|');if(p.length>=3)WORDS.push({ru:p[0],pr:p[1],tr:p[2],c:cc})});
+const TABS=[['write','Yazma'],['exam','Sınav'],['cards','Kartlar'],['test','Test'],['match','Eşleştirme'],['alpha','Alfabe'],['notes','Notlar'],['list','Liste']];
+const sel=new Set(CATS.map(c=>c.id));let mode='write';
+try{const s=JSON.parse(localStorage.getItem('rk5')||'{}');if(TABS.some(t=>t[0]===s.mode))mode=s.mode;if(Array.isArray(s.sel)&&s.sel.length){sel.clear();s.sel.forEach(x=>sel.add(x))}}catch(e){}
+const save=()=>{try{localStorage.setItem('rk5',JSON.stringify({mode,sel:[...sel]}))}catch(e){}};
+const pool=()=>{const seen=new Set();return WORDS.filter(w=>sel.has(w.c)).filter(w=>{const k=lc(w.tr)+'|'+norm(w.ru);if(seen.has(k))return false;seen.add(k);return true})};
+const answers=w=>{const s=new Set();WORDS.filter(x=>lc(x.tr)===lc(w.tr)).forEach(x=>{s.add(norm(x.ru));x.ru.split('/').forEach(p=>s.add(norm(p)))});s.delete('');return s};
 
-fetch('kelimeler.html').then(r=>{if(!r.ok)throw 0;return r.text()}).then(t=>{
-  const d=JSON.parse(t.match(/<script type="application\/json" id="data">([\s\S]*?)<\/script>/)[1]);
-  WORDS=d.words;CATS=d.cats;
-  RULES=new Function('return '+t.match(/const RULES = (\[[\s\S]*?\n\]);/)[1])();
-  boot();
-}).catch(()=>{$('#stage').innerHTML='Kelimeler yüklenemedi. <b>kelimeler.html</b> dosyası index.html ile aynı klasörde mi? Ayrıca siteyi GitHub Pages adresinden aç, dosyaya çift tıklayıp değil.'});
-
-function boot(){
-  CATS.forEach(c=>sel.add(c.id));ruleId=RULES[0].id;
-  try{const s=JSON.parse(localStorage.getItem('rk4')||'{}');if(s.mode&&TABS.some(t=>t[0]===s.mode))mode=s.mode;if(Array.isArray(s.sel)&&s.sel.length){sel.clear();s.sel.forEach(x=>sel.add(x))}}catch(e){}
-  $('#nav').innerHTML=TABS.map(t=>`<button data-m="${t[0]}">${t[1]}</button>`).join('');
-  $('#nav').onclick=e=>{const b=e.target.closest('button');if(b){mode=b.dataset.m;save();start();scrollTo(0,0)}};
-  $('#chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;
-    if(b.dataset.c){sel.has(b.dataset.c)?sel.delete(b.dataset.c):sel.add(b.dataset.c)}
-    else{const g=b.dataset.all||b.dataset.none;CATS.filter(c=>c.g===g).forEach(c=>b.dataset.all?sel.add(c.id):sel.delete(c.id))}
-    save();start()};
-  start();
-}
+$('#nav').innerHTML=TABS.map(t=>`<button data-m="${t[0]}">${t[1]}</button>`).join('');
+$('#nav').onclick=e=>{const b=e.target.closest('button');if(b){mode=b.dataset.m;save();start();scrollTo(0,0)}};
+$('#chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.c){sel.has(b.dataset.c)?sel.delete(b.dataset.c):sel.add(b.dataset.c)}
+  else{const g=b.dataset.all||b.dataset.none;CATS.filter(c=>c.g===g).forEach(c=>b.dataset.all?sel.add(c.id):sel.delete(c.id))}
+  save();start()};
 function chips(){
-  const gs=[...new Set(CATS.map(c=>c.g))];
-  $('#chips').innerHTML=gs.map(g=>`<div class="sm">${esc(g)} · <button data-all="${esc(g)}"><u>hepsi</u></button> <button data-none="${esc(g)}"><u>hiçbiri</u></button></div><div class="chips">`+
+  const op=$('#filter').open;
+  $('#chips').innerHTML=[...new Set(CATS.map(c=>c.g))].map(g=>`<div class="sm">${esc(g)} · <button data-all="${esc(g)}"><u>hepsi</u></button> <button data-none="${esc(g)}"><u>hiçbiri</u></button></div><div class="chips">`+
     CATS.filter(c=>c.g===g).map(c=>`<button class="chip" data-c="${c.id}" aria-pressed="${sel.has(c.id)}">${esc(c.n)}</button>`).join('')+'</div>').join('');
-  $('#cnt').textContent='· '+pool().length+' kelime';
+  $('#cnt').textContent='· '+pool().length+' kelime';$('#filter').open=op;
 }
 function start(){
   document.querySelectorAll('#nav button').forEach(b=>b.toggleAttribute('aria-current',b.dataset.m===mode));
-  $('#filter').hidden=mode==='rules';chips();
-  const needsPool=!(mode==='rules'||(mode==='test'&&kind!=='word'));
-  if(needsPool&&!pool().length){$('#stage').innerHTML='<p class="sm">Önce en az bir konu seç.</p>';return}
-  ({write:writeInit,cards:cardsInit,test:testInit,match:matchInit,rules:rulesInit,list:listInit})[mode]();
+  chips();const nf=['alpha','notes','exam'].includes(mode);$('#filter').hidden=nf;
+  if(!nf&&!pool().length){$('#stage').innerHTML='<p class="sm">Önce en az bir konu seç.</p>';return}
+  ({write:writeInit,cards:cardsInit,test:testInit,match:matchInit,alpha:alphaInit,notes:notesInit,exam:examInit,list:listInit})[mode]();
 }
 
 /* ---- YAZMA ---- */
@@ -103,7 +602,7 @@ function writeNext(){W.state='ask';W.shown=W.q[0];writeDraw()}
 function writeDraw(){
   const st=$('#stage');
   if(!W.shown){st.innerHTML=`<div class="q"><div class="big">Hepsini öğrendin</div><p>${W.total} kelime · ${W.right} doğru, ${W.tries-W.right} yanlış cevap</p><button class="btn p" id="again">Yeniden başla</button></div>`;$('#again').onclick=writeInit;return}
-  const cur=W.shown,w=cur.w,cat=CATS.find(c=>w.c.includes(c.id));
+  const cur=W.shown,w=cur.w,cat=CATS.find(c=>c.id===w.c);
   const head=`<div class="prog"><b style="width:${W.learned/W.total*100}%"></b></div><div class="meta"><span>${W.learned}/${W.total} öğrenildi · ${W.q.length} kaldı</span><span>Doğru ${W.right} · Yanlış ${W.tries-W.right}</span></div>`;
   const prompt=`<div class="q"><div class="sm">Rusçası nedir?</div><div class="big">${esc(w.tr)}</div>${cat?`<div class="sm">${esc(cat.n)}</div>`:''}${cur.miss&&W.state==='ask'?'<div class="sm">Tekrar: bunu daha önce yanlış yaptın</div>':''}</div>`;
   const inp=(id,ph)=>`<input class="win" id="${id}" lang="ru" placeholder="${ph}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
@@ -114,10 +613,10 @@ function writeDraw(){
     $('#chk').onclick=()=>{a.value.trim()?writeJudge(a.value):a.focus()};
     $('#skip').onclick=()=>writeJudge(null);
   }else if(W.state==='right'){
-    st.innerHTML=head+prompt+`<div class="fb"><b>✓ Doğru.</b> ${esc(w.ru)} (${esc(w.pr)}) = ${esc(w.tr)}${w.note?'<br>'+esc(w.note):''}</div><button class="btn p" id="next" style="width:100%">Sonraki</button>`;
+    st.innerHTML=head+prompt+`<div class="fb"><b>✓ Doğru.</b> ${ru(w.ru)} (${esc(w.pr)}) = ${esc(w.tr)}</div><button class="btn p" id="next" style="width:100%">Sonraki</button>`;
     $('#next').onclick=writeNext;$('#next').focus();
   }else{
-    st.innerHTML=head+prompt+`<div class="fb no"><b>✗ Yanlış.</b> ${W.given?'Senin cevabın: '+esc(W.given)+'<br>':''}Doğrusu: <b>${esc(w.ru)}</b> (${esc(w.pr)})${w.note?'<br>'+esc(w.note):''}</div><p class="sm">Doğrusunu yazarak devam et. Bu kelime birazdan tekrar gelecek.</p>`+inp('fix','Doğrusunu yaz')+`<button class="btn p" id="go" style="width:100%">Devam</button>`;
+    st.innerHTML=head+prompt+`<div class="fb no"><b>✗ Yanlış.</b> ${W.given?'Senin cevabın: '+esc(W.given)+'<br>':''}Doğrusu: <b>${ru(w.ru)}</b> (${esc(w.pr)})</div><p class="sm">Doğrusunu yazarak devam et. Bu kelime birazdan tekrar gelecek.</p>`+inp('fix','Doğrusunu yaz')+`<button class="btn p" id="go" style="width:100%">Devam</button>`;
     const f=$('#fix');setTimeout(()=>f.focus(),30);
     const go=()=>{if(answers(w).has(norm(f.value)))writeNext();else{f.value='';f.placeholder='Tam olarak doğrusunu yaz';f.focus()}};
     f.onkeydown=e=>{if(e.key==='Enter')go()};$('#go').onclick=go;
@@ -132,56 +631,33 @@ function cardsDraw(){
   if(!C.d.length){st.innerHTML=`<div class="q"><div class="big">Deste bitti</div><button class="btn p" id="again">Yeniden başla</button></div>`;$('#again').onclick=cardsInit;return}
   const w=C.d[0];
   st.innerHTML=`<div class="prog"><b style="width:${C.known/C.total*100}%"></b></div><div class="meta"><span>${C.known} bildim</span><span>${C.d.length} kaldı</span></div>
-  <button class="q" id="card" style="width:100%;min-height:220px;justify-content:center;border:1px solid var(--line);border-radius:18px;margin-bottom:12px">${C.flip?`<div class="big">${esc(w.tr)}</div><div class="pron">${esc(w.pr)}</div>${w.note?`<div class="sm">${esc(w.note)}</div>`:''}`:`<div class="big">${esc(w.ru)}</div><div class="pron">${esc(w.pr)}</div><div class="sm">çevirmek için dokun</div>`}</button>
+  <button class="q" id="card" style="width:100%;min-height:220px;justify-content:center;border:1px solid var(--line);border-radius:18px;margin-bottom:12px">${C.flip?`<div class="big">${esc(w.tr)}</div><div class="pron">${esc(w.pr)}</div>`:`<div class="big">${ru(w.ru)}</div><div class="pron">${esc(w.pr)}</div><div class="sm">çevirmek için dokun</div>`}</button>
   <div class="row"><button class="btn" id="no">Bilmedim</button><button class="btn p" id="yes">Bildim</button></div>`;
   $('#card').onclick=()=>{C.flip=!C.flip;cardsDraw()};
   $('#yes').onclick=()=>{C.d.shift();C.known++;C.flip=false;cardsDraw()};
   $('#no').onclick=()=>{C.d.push(C.d.shift());C.flip=false;cardsDraw()};
 }
 
-/* ---- TEST (kelime / cinsiyet / çoğul) ---- */
+/* ---- TEST ---- */
 let T;
-const GEN=['Eril','Dişil','Nötr'];
-const gW=()=>WORDS.filter(w=>/^(Eril|Dişil|Nötr)/.test(w.note)&&!/fiil/.test(w.note)&&!/\s/.test(w.ru));
-const pW=()=>WORDS.filter(w=>/^Tekil: .+ · .+$/.test(w.note)&&!/[ \/]/.test(w.ru));
-function qWord(w){
-  const toRu=Math.random()<.5,key=toRu?'ru':'tr',opts=[w];
-  for(const x of shuffle(WORDS)){if(opts.length>=4)break;if(x.tr.toLowerCase()!==w.tr.toLowerCase()&&!opts.some(o=>norm(o[key])===norm(x[key])))opts.push(x)}
-  return{sh:1,p:`<div class="big">${esc(w[toRu?'tr':'ru'])}</div>${toRu?'':`<div class="pron">${esc(w.pr)}</div>`}`,o:opts.map(o=>({ok:o===w,h:esc(o[key])})),e:`${esc(w.ru)} (${esc(w.pr)}) = ${esc(w.tr)}`,w};
-}
-function qGender(w){
-  const g=w.note.match(/^(Eril|Dişil|Nötr)/)[1];
-  return{sh:0,p:`<div class="sm">Cinsiyeti hangisi?</div><div class="big">${esc(w.ru)}</div><div class="sm">${esc(w.pr)} · ${esc(w.tr)}</div>`,o:GEN.map(x=>({ok:x===g,h:x})),e:`${esc(w.ru)} = ${g}. ${esc(w.note)}`,w};
-}
-function qPlural(w){
-  const m=w.note.match(/^Tekil: (.+?) · (.+)$/),sing=m[1],base=sing.replace(/\s*\(.*\)/,''),c=w.ru,wr=new Set();
-  ['ы','и','а','я','е'].forEach(a=>wr.add(c.slice(0,-1)+a));['ы','и','а'].forEach(a=>wr.add(base+a));
-  if(/ья$/.test(c)){wr.add(c.replace(/ья$/,'ы'));wr.add(c.replace(/ья$/,'и'))}
-  wr.delete(c);wr.delete(base);const wrong=shuffle([...wr]).slice(0,3);
-  return{sh:1,p:`<div class="sm">Çoğulu hangisi?</div><div class="big">${esc(sing)}</div><div class="sm">çoğul anlamı: ${esc(w.tr)}</div>`,o:[{ok:true,h:esc(c)}].concat(wrong.map(x=>({ok:false,h:esc(x)}))),e:`${esc(sing)} → ${esc(c)} (${esc(w.pr)}). Kural: ${esc(m[2])}`,w};
-}
 function testInit(){
-  const names={word:'Kelime',gender:'Cinsiyet',plural:'Çoğul'};
-  $('#stage').innerHTML=`<div class="q"><div class="big">Test</div><div class="row">${Object.keys(names).map(k=>`<button class="btn ${k===kind?'p':''}" data-k="${k}">${names[k]}</button>`).join('')}</div>
-  <p class="sm">${{word:'Seçili konulardan 4 şıklı kelime sorusu.',gender:'Kelimenin eril, dişil veya nötr olduğunu bul.',plural:'Doğru çoğul biçimini seç.'}[kind]}</p><button class="btn p" id="go" style="width:100%">20 soruluk test başlat</button></div>`;
-  $('#stage').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{kind=b.dataset.k;start()});
-  $('#go').onclick=()=>{
-    const src=kind==='word'?pool():kind==='gender'?gW():pW(),fn={word:qWord,gender:qGender,plural:qPlural}[kind];
-    runTest(shuffle(src).slice(0,20).map(fn));
-  };
+  const qs=shuffle(pool()).slice(0,20).map(w=>{const toRu=Math.random()<.5,key=toRu?'ru':'tr',opts=[w];
+    for(const x of shuffle(WORDS)){if(opts.length>=4)break;if(lc(x.tr)!==lc(w.tr)&&!opts.some(o=>norm(o[key])===norm(x[key])))opts.push(x)}
+    return{w,toRu,opts:shuffle(opts),wrong:false}});
+  runTest(qs);
 }
-function runTest(qs){T={qs:qs.map(q=>({...q,o:q.sh?shuffle(q.o):q.o})),i:0,score:0,a:null,wrong:[]};testDraw()}
+function runTest(qs){T={qs,i:0,score:0,a:null,wrong:[]};testDraw()}
 function testDraw(){
   const st=$('#stage');
-  if(T.i>=T.qs.length){st.innerHTML=`<div class="q"><div class="big">${T.score}/${T.qs.length}</div>${T.wrong.length?`<div class="tw" style="width:100%"><table>${T.wrong.map(q=>`<tr><td class="r">${esc(q.w.ru)}</td><td>${esc(q.w.pr)} · ${esc(q.w.tr)}</td></tr>`).join('')}</table></div>`:''}
+  if(T.i>=T.qs.length){st.innerHTML=`<div class="q"><div class="big">${T.score}/${T.qs.length}</div>${T.wrong.length?`<div class="tw" style="width:100%"><table>${T.wrong.map(q=>`<tr><td class="r">${ru(q.w.ru)}</td><td>${esc(q.w.pr)} · ${esc(q.w.tr)}</td></tr>`).join('')}</table></div>`:''}
     <div class="row" style="width:100%">${T.wrong.length?'<button class="btn" id="redo">Yanlışları tekrar et</button>':''}<button class="btn p" id="again">Yeni test</button></div></div>`;
     const r=$('#redo');if(r)r.onclick=()=>runTest(T.wrong.slice());$('#again').onclick=testInit;return}
-  const q=T.qs[T.i],a=T.a;
+  const q=T.qs[T.i],a=T.a,ask=q.toRu?'tr':'ru',ans=q.toRu?'ru':'tr';
   st.innerHTML=`<div class="prog"><b style="width:${T.i/T.qs.length*100}%"></b></div><div class="meta"><span>Soru ${T.i+1}/${T.qs.length}</span><span>Skor ${T.score}</span></div>
-  <div class="q">${q.p}</div>
-  <div class="opts">${q.o.map((o,k)=>`<button class="opt${a!==null?(o.ok?' ok':k===a?' bad':''):''}" data-k="${k}" ${a!==null?'disabled':''}>${o.h}</button>`).join('')}</div>
-  ${a!==null?`<div class="fb"><b>${q.o[a].ok?'✓ Doğru.':'✗ Yanlış.'}</b> ${q.e}</div><button class="btn p" id="next" style="width:100%">Sonraki</button>`:''}`;
-  st.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(T.a!==null)return;T.a=+b.dataset.k;if(q.o[T.a].ok)T.score++;else T.wrong.push(q);testDraw()});
+  <div class="q"><div class="big">${ask==='ru'?ru(q.w[ask]):esc(q.w[ask])}</div>${q.toRu?'':`<div class="pron">${esc(q.w.pr)}</div>`}</div>
+  <div class="opts">${q.opts.map((o,k)=>`<button class="opt${a!==null?(o===q.w?' ok':k===a?' bad':''):''}" data-k="${k}" ${a!==null?'disabled':''}>${ans==='ru'?ru(o[ans]):esc(o[ans])}</button>`).join('')}</div>
+  ${a!==null?`<div class="fb"><b>${q.opts[a]===q.w?'✓ Doğru.':'✗ Yanlış.'}</b> ${ru(q.w.ru)} (${esc(q.w.pr)}) = ${esc(q.w.tr)}</div><button class="btn p" id="next" style="width:100%">Sonraki</button>`:''}`;
+  st.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(T.a!==null)return;T.a=+b.dataset.k;if(q.opts[T.a]===q.w)T.score++;else T.wrong.push(q);testDraw()});
   const n=$('#next');if(n){n.onclick=()=>{T.i++;T.a=null;testDraw()};n.focus()}
 }
 
@@ -189,7 +665,7 @@ function testDraw(){
 let M;
 function matchInit(){
   const sr=new Set(),stt=new Set();
-  const list=shuffle(pool()).filter(w=>{const t=w.tr.toLowerCase();if(sr.has(w.ru)||stt.has(t))return false;sr.add(w.ru);stt.add(t);return true});
+  const list=shuffle(pool()).filter(w=>{const t=lc(w.tr);if(sr.has(w.ru)||stt.has(t))return false;sr.add(w.ru);stt.add(t);return true});
   M={list,r:0,mis:0,total:0};matchRound();
 }
 function matchRound(){
@@ -198,9 +674,9 @@ function matchRound(){
   M.part=part;M.L=shuffle(part);M.R=shuffle(part);M.ok=new Set();M.pick=null;matchDraw();
 }
 function matchDraw(){
-  const rounds=Math.ceil(M.list.length/6);
-  const L=M.L.map((w,i)=>`<button class="m ${M.ok.has(w)?'done':''} ${M.pick&&M.pick.s==='l'&&M.pick.i===i?'sel':''}" data-s="l" data-i="${i}"><b>${esc(w.ru)}</b><br><span class="sm">${esc(w.pr)}</span></button>`).join('');
-  const R=M.R.map((w,i)=>`<button class="m ${M.ok.has(w)?'done':''} ${M.pick&&M.pick.s==='r'&&M.pick.i===i?'sel':''}" data-s="r" data-i="${i}">${esc(w.tr)}</button>`).join('');
+  const rounds=Math.ceil(M.list.length/6),pk=(s,i)=>M.pick&&M.pick.s===s&&M.pick.i===i?' sel':'';
+  const L=M.L.map((w,i)=>`<button class="m${M.ok.has(w)?' done':''}${pk('l',i)}" data-s="l" data-i="${i}"><b>${ru(w.ru)}</b><br><span class="sm">${esc(w.pr)}</span></button>`).join('');
+  const R=M.R.map((w,i)=>`<button class="m${M.ok.has(w)?' done':''}${pk('r',i)}" data-s="r" data-i="${i}">${esc(w.tr)}</button>`).join('');
   $('#stage').innerHTML=`<div class="prog"><b style="width:${M.r/rounds*100}%"></b></div><div class="meta"><span>Tur ${M.r+1}/${rounds}</span><span>Hata ${M.mis}</span></div>
   <p class="sm">Soldaki Rusça kelimeyi sağdaki Türkçe karşılığıyla eşleştir.</p><div class="mgrid"><div class="mcol">${L}</div><div class="mcol">${R}</div></div>`;
   $('#stage').querySelectorAll('.m').forEach(b=>b.onclick=()=>matchTap(b.dataset.s,+b.dataset.i));
@@ -213,30 +689,851 @@ function matchTap(s,i){
   matchDraw();
 }
 
-/* ---- KURALLAR ---- */
-const lookup=r=>Array.isArray(r)?{ru:r[0],pr:r[1],tr:r[2],note:r[3]||''}:(WORDS.find(w=>w.ru===r)||{ru:r,pr:'',tr:'',note:''});
-function block(b){
-  if(b.t==='p')return `<p>${esc(b.x)}</p>`;
-  if(b.t==='tip')return `<div class="tip">${esc(b.x)}</div>`;
-  if(b.t==='tbl')return `<div class="tw"><table><thead><tr>${b.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
-  if(b.t==='ex')return `<div class="tw"><table><thead><tr><th>Rusça</th><th>Okunuş</th><th>Türkçe</th><th>Not</th></tr></thead><tbody>${b.rows.map(lookup).map(w=>`<tr><td class="r">${esc(w.ru)}</td><td class="p">${esc(w.pr)}</td><td>${esc(w.tr)}</td><td class="sm">${esc(w.note)}</td></tr>`).join('')}</tbody></table></div>`;
-  return '';
-}
-function rulesInit(){
-  const gs=[...new Set(RULES.map(r=>r.g))],r=RULES.find(x=>x.id===ruleId)||RULES[0],i=RULES.indexOf(r);
-  const idx=gs.map(g=>`<div class="sm">${esc(g)}</div><div class="chips">${RULES.filter(x=>x.g===g).map(x=>`<button class="chip" data-r="${x.id}" aria-pressed="${x.id===r.id}">${esc(x.t)}</button>`).join('')}</div>`).join('');
-  const prev=RULES[i-1],next=RULES[i+1];
-  $('#stage').innerHTML=idx+`<h2>${esc(r.t)}</h2>`+r.b.map(block).join('')+
-    `<div class="row" style="margin-top:16px">${r.quiz?`<button class="btn p" id="rq">${r.quiz==='gender'?'Cinsiyet testi çöz':'Çoğul testi çöz'}</button>`:''}${prev?`<button class="btn" data-r="${prev.id}">← ${esc(prev.t)}</button>`:''}${next?`<button class="btn" data-r="${next.id}">${esc(next.t)} →</button>`:''}</div>`;
-  $('#stage').querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{ruleId=b.dataset.r;rulesInit();scrollTo(0,0)});
-  const q=$('#rq');if(q)q.onclick=()=>{kind=r.quiz;mode='test';save();start();scrollTo(0,0)};
-}
-
 /* ---- LİSTE ---- */
 function listInit(){
-  $('#stage').innerHTML=`<input type="search" id="q" placeholder="Rusça, okunuş veya Türkçe ara" autocomplete="off"><div class="tw"><table><thead><tr><th>Rusça</th><th>Okunuş</th><th>Türkçe</th><th>Not</th></tr></thead><tbody id="tb"></tbody></table></div>`;
-  const draw=()=>{const q=$('#q').value.trim().toLowerCase();
-    $('#tb').innerHTML=pool().filter(w=>!q||(w.ru+' '+w.pr+' '+w.tr).toLowerCase().includes(q)).map(w=>`<tr><td class="r">${esc(w.ru)}</td><td class="p">${esc(w.pr)}</td><td>${esc(w.tr)}</td><td class="sm">${esc(w.note)}</td></tr>`).join('')};
+  $('#stage').innerHTML=`<input type="search" id="q" placeholder="Rusça, okunuş veya Türkçe ara" autocomplete="off"><div class="tw"><table><thead><tr><th>Rusça</th><th>Okunuş</th><th>Türkçe</th></tr></thead><tbody id="tb"></tbody></table></div>`;
+  const draw=()=>{const q=lc($('#q').value.trim());
+    $('#tb').innerHTML=pool().filter(w=>!q||lc(w.ru+' '+w.pr+' '+w.tr).includes(q)).map(w=>`<tr><td class="r">${ru(w.ru)}</td><td class="p">${esc(w.pr)}</td><td>${esc(w.tr)}</td></tr>`).join('')};
   $('#q').oninput=draw;draw();
 }
+/* ---- ALFABE ---- */
+const LET=`А|а|a|a|автобус|avtobus
+Б|бэ|b|b|буква|bukva
+В|вэ|v|v|вода|voda
+Г|гэ|g|g|голова|golova
+Д|дэ|d|d|дом|dom
+Е|е|ye|e|еда|yeda
+Ё|ё|yo|yo|ёлка|yolka
+Ж|жэ|j|zh|жизнь|jizn'
+З|зэ|z|z|звезда|zvezda
+И|и|i|i|имя|imya
+Й|и краткое|kısa y|j|йод|yod
+К|ка|k|k|книга|kniga
+Л|эль|l|l|лампа|lampa
+М|эм|m|m|машина|maşina
+Н|эн|n|n|нож|noj
+О|о|o|o|окно|okno
+П|пэ|p|p|письмо|pis'mo
+Р|эр|r (dil ucuyla titrek)|r|рыба|ryba
+С|эс|s|s|стол|stol
+Т|тэ|t|t|театр|teatr
+У|у|u|u|улица|ulitsa
+Ф|эф|f|f|фильм|fil'm
+Х|ха|h (boğazdan, sert)|kh|хлеб|hleb
+Ц|цэ|ts|ts|цветы|tsvety
+Ч|че|ç|ch|чай|çay
+Ш|ша|ş|sh|школа|şkola
+Щ|ща|şç|shh|щётка|şçotka
+Ъ|твёрдый знак|sertleştirme işareti (sessiz)|"|объяснять|ob''yasnyat'
+Ы|ы|ı|y'|мы|mı
+Ь|мягкий знак|yumuşatma işareti (sessiz)|\`|день|den'
+Э|э|e|e\`|это|eto
+Ю|ю|yu|yu|юноша|yunoşa
+Я|я|ya|ya|яблоко|yabloko`.split('\n').map(l=>{const p=l.split('|');return{u:p[0],l:p[0].toLowerCase(),name:p[1],snd:p[2],ex:p[4],expr:p[5],lat:p[3]}});
+const LU=i=>ru(LET[i].u),LB=L=>ru(L.u+' '+L.l);
+const nb=i=>[i-1,i,i+1].filter(k=>k>=0&&k<LET.length).map(LU).join(' → ')+` (${i+1}. harf)`;
+let AV='table',AQ;
+function alphaInit(){
+  $('#stage').innerHTML=`<div class="chips" id="asub">${[['table','Tablo'],['sound','Harf testi'],['order','Sıra testi'],['write','Alfabeyi yaz']].map(v=>`<button class="chip" data-v="${v[0]}" aria-pressed="${AV===v[0]}">${v[1]}</button>`).join('')}</div><div id="av"></div>`;
+  $('#asub').onclick=e=>{const b=e.target.closest('button');if(b){AV=b.dataset.v;alphaInit()}};
+  ({table:alTable,sound:()=>alphaMc(alSound(),alSound),order:()=>alphaMc(alOrder(),alOrder),write:alWrite})[AV]();
+}
+function alTable(){
+  $('#av').innerHTML=`<div class="fb">Sıra ve adlar kitaptaki Русский алфавит tablosuna göredir. 33 harf: 10 ünlü (а я э е о ё у ю ы и), 21 ünsüz ve 2 işaret (ъ ь). İşaretlerin sesi yoktur.</div>
+  <div class="tw"><table><thead><tr><th>#</th><th>Harf</th><th>Adı</th><th>Latin (kitap)</th><th>Türkçe karşılığı</th><th>Örnek</th></tr></thead><tbody>${LET.map((L,i)=>`<tr><td>${i+1}</td><td class="r">${LB(L)}</td><td class="r">${ru(L.name)}</td><td>${esc(L.lat)}</td><td class="p">${esc(L.snd)}</td><td>${ru(L.ex)} <span class="sm">${esc(L.expr)}</span></td></tr>`).join('')}</tbody></table></div>`;
+}
+function alSound(){
+  return shuffle(LET).slice(0,20).map(L=>{
+    const t=Math.floor(Math.random()*3),key=t===1?'snd':t===2?'lat':'snd',opts=[L];
+    for(const x of shuffle(LET)){if(opts.length>=4)break;if(!opts.some(o=>o[key]===x[key]))opts.push(x)}
+    const p=t===0?`<div class="sm">Türkçe karşılığı nedir?</div><div class="big">${LB(L)}</div>`
+      :t===1?`<div class="sm">Hangi harf?</div><div class="big">${esc(L.snd)}</div>`
+      :`<div class="sm">Kitaptaki Latin yazılışı nedir?</div><div class="big">${LB(L)}</div>`;
+    return{p,o:shuffle(opts).map(o=>({ok:o===L,h:t===0?esc(o.snd):t===1?LB(o):esc(o.lat)})),
+      e:`${LB(L)} = ${esc(L.snd)}. Kitapta Latin yazılışı: ${esc(L.lat)}, adı: ${ru(L.name)}. Örnek: ${ru(L.ex)} (${esc(L.expr)})`};
+  });
+}
+function alOrder(){
+  const N=LET.length,all=[...Array(N).keys()];
+  return shuffle(all).slice(0,20).map(i=>{
+    let t=['next','prev','miss'][Math.floor(Math.random()*3)];
+    if(t==='next'&&i===N-1)t='prev';if(t==='prev'&&i===0)t='next';
+    const s=Math.min(Math.max(i-2,0),N-5),win=t==='miss'?[0,1,2,3,4].map(k=>s+k):[];
+    const ans=t==='next'?i+1:t==='prev'?i-1:i;
+    const dis=shuffle(all.filter(k=>k!==ans&&k!==i&&!win.includes(k))).slice(0,3);
+    const p=t==='miss'?`<div class="sm">Eksik harf hangisi?</div><div class="big">${win.map(k=>k===i?'?':LU(k)).join(' ')}</div>`
+      :`<div class="sm">Bu harften ${t==='next'?'sonra':'önce'} hangi harf gelir?</div><div class="big">${LU(i)}</div>`;
+    return{p,o:shuffle([ans,...dis]).map(k=>({ok:k===ans,h:LU(k)})),e:`Doğru sıra: ${nb(ans)}`};
+  });
+}
+function alphaMc(qs,again){AQ={qs,again,i:0,score:0,a:null,wrong:[]};alphaMcDraw()}
+function alphaMcDraw(){
+  const av=$('#av');
+  if(AQ.i>=AQ.qs.length){
+    av.innerHTML=`<div class="q"><div class="big">${AQ.score}/${AQ.qs.length}</div>${AQ.wrong.length?`<div class="tw" style="width:100%"><table>${AQ.wrong.map(q=>`<tr><td>${q.e}</td></tr>`).join('')}</table></div>`:''}<div class="row" style="width:100%">${AQ.wrong.length?'<button class="btn" id="redo">Yanlışları tekrar et</button>':''}<button class="btn p" id="again">Yeni test</button></div></div>`;
+    const r=$('#redo');if(r)r.onclick=()=>alphaMc(AQ.wrong.slice(),AQ.again);
+    $('#again').onclick=()=>alphaMc(AQ.again(),AQ.again);return}
+  const q=AQ.qs[AQ.i],a=AQ.a;
+  av.innerHTML=`<div class="prog"><b style="width:${AQ.i/AQ.qs.length*100}%"></b></div><div class="meta"><span>Soru ${AQ.i+1}/${AQ.qs.length}</span><span>Skor ${AQ.score}</span></div>
+  <div class="q">${q.p}</div>
+  <div class="opts">${q.o.map((o,k)=>`<button class="opt${a!==null?(o.ok?' ok':k===a?' bad':''):''}" data-k="${k}" ${a!==null?'disabled':''}>${o.h}</button>`).join('')}</div>
+  ${a!==null?`<div class="fb"><b>${q.o[a].ok?'✓ Doğru.':'✗ Yanlış.'}</b> ${q.e}</div><button class="btn p" id="next" style="width:100%">Sonraki</button>`:''}`;
+  av.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(AQ.a!==null)return;AQ.a=+b.dataset.k;if(q.o[AQ.a].ok)AQ.score++;else AQ.wrong.push(q);alphaMcDraw()});
+  const n=$('#next');if(n){n.onclick=()=>{AQ.i++;AQ.a=null;alphaMcDraw()};n.focus()}
+}
+function alWrite(){
+  $('#av').innerHTML=`<p>Alfabeyi baştan sona, 33 harfi sırayla yaz. Boşluklu ya da boşluksuz olur, büyük küçük fark etmez.</p>
+  <textarea class="win" id="aw" rows="3" lang="ru" placeholder="а б в г…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="border-radius:20px;font-size:22px"></textarea>
+  <div class="row"><button class="btn" id="peek">Sırayı göster</button><button class="btn p" id="chk">Kontrol et</button></div><div id="res"></div>`;
+  const chip=(c,k)=>`<span class="lt ${k}">${ru(c)}</span>`,right=LET.map(L=>L.l);
+  $('#peek').onclick=()=>{$('#res').innerHTML=`<div class="fb">${right.map(c=>chip(c,'')).join('')}</div>`};
+  $('#chk').onclick=()=>{
+    const t=Array.from($('#aw').value.toLowerCase().replace(/[\s,.\-]/g,''));
+    if(!t.length){$('#aw').focus();return}
+    const bad=t.findIndex((c,i)=>c!==right[i]),miss=right.filter(c=>!t.includes(c));
+    let msg;
+    if(bad===-1&&t.length===right.length)msg='<b>Mükemmel!</b> 33/33 doğru.';
+    else if(bad===-1)msg=`<b>Şu ana kadar hepsi doğru</b> ama ${right.length-t.length} harf eksik. İlk eksik: ${ru(right[t.length])} (${t.length+1}. harf).`;
+    else msg=`<b>${bad+1}. harfte hata:</b> sen ${ru(t[bad])} yazdın, doğrusu ${ru(right[bad])}. Doğru yazdığın ilk ${bad} harf var.`;
+    $('#res').innerHTML=`<div class="fb ${bad===-1&&t.length===right.length?'':'no'}">${msg}</div><div class="fb">${t.map((c,i)=>chip(c,c===right[i]?'g':'b')).join('')}</div>${miss.length?`<div class="sm">Hiç yazmadığın harfler: ${miss.map(c=>ru(c)).join(' ')}</div>`:''}`;
+  };
+}
+
+/* ---- NOTLAR ---- */
+const NRAW=`#Ders 1
+##Sayfa 6–7 · Fonetik (Урок 1)
+@Konular
+Sayfa 6 :: Kiril alfabesi ve ses bilgisi (fonetik), başlangıç düzeyi.
+Latin'dekine benzer/aynı görünen harfler :: А, Е, К, М, О, Т. Ünlü azaltması notu: о́ = [о], о = [а].
+Latin'e benzeyip farklı ses veren harfler :: Р = R, С = S, Н = N, В = V, И = I, У = U, Х = H.
+Kirile özgü diğer harfler :: Б, Г, Д, З, Л, П, Ф, Ы, Э.
+Ё, Й, Ю, Я :: yumuşak ve kayma sesli harfler (Ё, Ю, Я ünlüdür, Й yarı ünlüdür).
+Hışırtılı ve ıslıklı harfler :: Ж, Ц, Ч, Ш, Щ.
+Ayırıcı ve yumuşatma işaretleri :: Ъ, Ь.
+Sayfa 7 :: Alıştırmalar: 2. Duyduğun harfleri seç (ВЫБИРАЕМ БУКВЫ, КОТОРЫЕ СЛЫШИМ). 3. Karışık harflerden kelime kur (СОБИРАЕМ СЛОВА). 4. Doğru harfleri seçip kelime kur. 5. Eksik harfleri yaz (ВПИСЫВАЕМ БУКВЫ). 6. Kirilce ad, soyad, şehir ve ülkeni yaz (ПИШЕМ КИРИЛЛИЦЕЙ СВОЁ ИМЯ, ФАМИЛИЮ, ГОРОД И СТРАНУ).
+@Fiiller
+Bu sayfalarda fiil yok.
+@Kelimeler (Sayfa 6)
+Bölüm 1 :: кот, кака́о, а́том, коме́та, тома́т
+Р :: рок, теа́тр, ка́рта, каратэ́, мото́р, метро́, раке́та, карао́ке
+С :: стресс, ма́ска, ксе́рокс, ко́смос, тест, тост, текст
+Н :: танк, то́нна, рестора́н, моме́нт, но́рма
+В :: Москва́, Ве́на, е́вро, Веро́на, вете́ран
+И :: кино́, вино́, То́кио, такси́, систе́ма, три, Аме́рика, матема́тика, Интерне́т, сим-ка́рта
+У :: ка́ктус, тури́ст, сувени́р, са́уна, мину́та, институ́т, университе́т, коммуни́ст
+Х :: хара́ктер, ха́кер, Хироси́ма, мона́рх, Христо́с, Алла́х
+Б :: банк, банкома́т, Берн, брат, бо́мба, бар, Бонн, авто́бус
+Г :: гита́ра, гимна́стика, Аргенти́на, га́мбургер
+Д :: докуме́нт, а́дрес, креди́т, демокра́т, дире́ктор, идио́т, ви́део
+З :: ви́за, ва́за, ро́за, казино́, кри́зис, би́знес, бизнесме́н
+Л :: литр, лимо́н, миллио́н, клие́нт, клу́б, коллéга, интелле́кт, бале́т, бала́нс, киломе́тр, килогра́мм, телеви́зор
+П :: парк, порт, капита́н, па́спорт, Евро́па, Петербу́рг, гру́ппа, пробле́ма, поликли́ника, парла́мент, тра́нспорт, су́пер
+Ф :: о́фис, фи́рма, факт, ко́фе, кафе́, фа́брика, футбо́л, телефо́н, факс, фото́граф, А́фрика, фанта́стика
+Ы :: му́зыка, музыка́нты, Крым, тури́сты, проду́кты, ресу́рсы, клие́нты, студе́нты
+Э :: эконо́мика, аэропо́рт, экза́мен, эро́тика, эспре́ссо
+Ё :: актёр, партнёр, репортёр, боксёр
+Й :: май, йо́гурт, йо́га, сайт, «Фейсбу́к», «Тойо́та», диза́йнер, музе́й
+Ю :: бюро́, бюрокра́т, бюдже́т, ю́мор, сюрпри́з
+Я :: Росси́я, Ита́лия, А́зия, Япо́ния, компа́ния, демокра́тия
+Ж :: журна́л, журнали́ст, ме́неджер, джи́нсы, жира́ф
+Ц :: центр, цуна́ми, ситуа́ция, корпора́ция, корру́пция
+Ч :: чек, чемпио́н, Чи́ли, матч, капучи́но
+Ш :: шок, шокола́д, маши́на, шофёр, су́ши, шампа́нское
+Щ :: борщ, же́нщина, компью́терщик
+Ъ :: объе́кт, субъе́кт
+Ь :: Нью-Йо́рк, Неа́поль, секрета́рь, апре́ль, октя́брь
+@Alıştırma kelimeleri (Sayfa 7)
+2. Alıştırma, 1 :: мкт, аое, мак, кет
+2. Alıştırma, 2 :: сух, вин, рис, рус, хсн, сир, рвс
+2. Alıştırma, 3 :: бпд, лдп, фэы, ээг, лбы, эпф, пгд, ыдб
+2. Alıştırma, 4 :: ёея, йяю, йоё, яйё, яюё, юяй, юйя
+2. Alıştırma, 5 :: жшч, цщц, чшц, шщц, жчш, цщж, шчщ
+3. Alıştırma :: Örnek: фенолет → телефон. Karışık harfler: тчма, рнецт, абжга, дакво, рагита, бофтлу, ристту, ртака
+4. Alıştırma :: Örnek: шржунлøа → журнал. Karışık harfler: рбакоп, оаклшсп, шифсож, доубвие, тдезусншт, жарзош, мёррог, сезунибж
+5. Alıştırma (eksik harfler) :: пас__орт, ___пера, ___илограмм, а__ропорт, муз__ка, ___имон, ко__е, про__лема, такс__, кре__ит, ви__а, са__на, ___емпион, студе__т, ___амбургер, су__енир, бор___, ___огурт, ситуа__ия, су__и
+#Ders 2
+##Sayfa 8–9 · Fonetik ve selamlaşma (Урок 2)
+@Konular
+Sayfa 8 :: Sert (ТВЁРДЫЕ) ve yumuşak (МЯГКИЕ) ünsüzler. Б П, В Ф, Г К, Д Т, З С, Л М Н Р, Х ünsüzlerinin sert ünlülerle (А, У, О, Ы, Э) ve yumuşak ünlülerle / yumuşatma işaretiyle (Я, Ю, Е/Ё, И, Ь) birleşimi.
+Yazım ve okunuş kuralları :: Ж, Ш, Ч, Щ + И, А, У birleşimleri (ЖИ, ШИ, ЧИ, ЩИ ve ЧА, ЩА; ЧУ, ЩУ).
+1. Alıştırma :: Sert ve yumuşak hece çiftlerini oku, dinle, seç (ла — ля, лу — лю, ло — лё, лэ — ле, лы — ли vb.).
+2. Alıştırma :: Örnek kelime gruplarını dinle, tekrar et, oku.
+Sayfa 9, 3. Alıştırma :: Vurgu ve ünlü okunuş modelleri: о́ = о, о = а (хорошо́); е́ = е, е = и (секу́нда).
+Selamlaşma, vedalaşma, özür ve tanışma ifadeleri :: ЗДРАВСТВУЙТЕ! başlığı altında günlük iletişim kalıpları ve kısa diyaloglar.
+@Fiiller
+Yönergelerde :: чита́ем (okuyoruz), слу́шаем (dinliyoruz), выбира́ем (seçiyoruz), повторя́ем (tekrarlıyoruz)
+Diyalog ve kalıplarda :: здра́вствуйте! (merhaba, iyi günler), извини́те! (affedersiniz), зна́чит (anlamına gelir: «Что зна́чит «Приве́т»?»)
+@Kelimeler (Sayfa 8, 2. Alıştırma)
+Л :: ла́мпа, Лао́с, шко́ла · литр, лимо́н, Монго́лия · «Ла Ска́ла», Аля́ска, Ло́ндон, Ле́нин
+Д :: да, да́та, туда́ · дя́дя, де́мон, демокра́т, банди́т, студе́нт, де́ти · данти́ст, де́мон, дом, де́ло
+Т :: э́та, тот, тут · те́ма, теа́тр, тётя, тип, институ́т · тури́ст, террори́ст, тост, текст, ата́ка, апте́ка
+М :: мы, дам, ум, дом, да́ма, до́ма, ма́ма, там, ду́ма, том, мо́да · коме́та, меха́ник, микроско́п, ми́нимум, Мю́нхен · март, метр, мото́р, метро́
+@Kelimeler (Sayfa 9, 3. Alıştırma)
+Model 1 (о́ = о, о = а) :: ко́фе, Москва́, до́ктор, рестора́н, Ло́ндон, Монта́на, вода́, во́дка, оте́ль, Росси́я, ко́ка-ко́ла, Вашингто́н, профе́ссия, о́фис, шко́ла, фотогра́фия, хорошо́
+Model 2 (е́ = е, е = и) :: дире́ктор, Петербу́рг, Мю́нхен, теа́тр, метр, метро́, раке́та, тео́рия, систе́ма, секу́нда, Ве́на, Вене́ция, матема́тика, те́хника, литерату́ра
+@Diyaloglar ve ifadeler (ЗДРАВСТВУЙТЕ!)
+Selamlaşma :: Здра́вствуйте! · До свида́ния! · Пока́! — Пока́, ма́ма!
+Özür :: Извини́те! — Ничего́!
+Tanışma :: Приве́т! Я Марк. — Приве́т! Я Ле́ра!
+Teşekkür :: Спаси́бо! — Пожа́луйста!
+Hal hatır :: Приве́т, Марк! Как дела́? — Спаси́бо, хорошо́!
+Anlam sorma :: Что зна́чит «Приве́т»? — Hi! · Как по-ру́сски «taxi»? — Такси́!
+##Sayfa 10–11 · Cinsiyet ve Кто это? / Что это? (Урок 2)
+@Konular
+Sayfa 10, gramer cinsiyeti (NOMINATIVE № 1) :: Eril (он), nötr (оно́) ve dişil (она́) isimler sondaki harfe göre ayrılır: eril -, -ь; nötr -о, -е; dişil -а, -я, -ь.
+İstisnalar ve özel isimler :: Sonu -а / -я ile biten eril isimler (па́па, де́душка, мужчи́на, дя́дя ve kısaltmalar Ди́ма, Са́ша, Воло́дя). Sonu -е ile biten eril ко́фе. -мя ile biten nötr isimler (и́мя, вре́мя).
+4. Alıştırma :: Он / оно́ / она́? Verilen kelimelerin cinsiyetini belirle.
+Sayfa 11 :: «Кто э́то?» (kişi/canlı) ve «Что э́то?» (nesne/kavram) soruları. Cevap: Это ...
+5. Alıştırma :: Görsellere bakıp soru-cevap kur ve yaz (Кто э́то? — Это ... / Что э́то? — Это ...), 1–16 numaralı görseller.
+@Fiiller
+спра́шиваем (soruyoruz), отвеча́ем (cevaplıyoruz), пи́шем (yazıyoruz)
+Not :: «Кто э́то?», «Что э́то?», «Это ...» kalıplarında şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 10)
+Örnek kelimeler :: телефо́н, метро́, гита́ра, студе́нт, студе́нтка, мо́ре, семья́, день, ночь
+4. Alıştırma :: тури́ст, шко́ла, телефо́н, кино́, маши́на, дом, оте́ль, кафе́, кот, магази́н, су́мка, Интерне́т, пробле́ма, же́нщина, университе́т, учи́тель, гита́ра, кни́га, рестора́н, аэропо́рт, Москва́, Ло́ндон, Евро́па, Росси́я, Кита́й, Аме́рика
+İstisnalar :: ко́фе · и́мя, вре́мя · па́па, де́душка, мужчи́на, дя́дя
+Özel isim kısaltmaları :: Дми́трий — Ди́ма, Алекса́ндр — Са́ша, Влади́мир — Воло́дя
+@Kelimeler (Sayfa 11)
+Кто э́то? :: музыка́нт, такси́ст, студе́нтка, учи́тель, соба́ка («Это соба́ка», «Это то́же соба́ка»)
+Что э́то? :: гита́ра, маши́на, университе́т, шко́ла
+1–16 numaralı görseller :: кни́га, мужчи́на, студе́нт, дом, же́нщина, кафе́, шко́ла, тури́ст, маши́на, магази́н, учи́тель, соба́ка, телефо́н, оте́ль, кот, су́мка
+##Sayfa 12–13 · Это ...? alıştırmaları (Урок 2)
+@Konular
+Sayfa 12, 6. bölüm (TB10) :: «Что это? Кто это?» dinleme ve yazma (1–8 numaralı maddeler).
+Да, это ... / Нет, это ... :: Olumlu ve olumsuz yanıtlarla cinsiyet/kişi belirtme (Это студе́нт? — Да, это студе́нт. / Это студе́нт? — Нет, это студе́нтка.).
+7. bölüm :: СМОТРИМ НА КАРТИНКИ, СПРАШИВАЕМ И ОТВЕЧАЕМ. Görsellere bakıp soru sor, cevapla (1. Это соба́ка?, 2. Это же́нщина?).
+Sayfa 13 :: Alıştırmaya devam (3–6): mekân, nesne, kişi ve yayın görselleri üzerinden Это ...? ve А это что? soruları.
+@Fiiller
+смо́трим (bakıyoruz), спра́шиваем (soruyoruz), отвеча́ем (cevaplıyoruz)
+Not :: «Это маши́на», «Это студе́нт» gibi kalıplarda şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler
+Sayfa 12 :: Что э́то? Кто э́то? · Это маши́на. · Это студе́нт? — Да, это студе́нт. · Это студе́нт? — Нет, это студе́нтка. · 1. Это соба́ка? · 2. Это же́нщина?
+Sayfa 13 :: 3. Это шко́ла? · 4. Это маши́на? · 5. Это кни́га? · 6. Это магази́н? А это что?
+Görsellerdeki yazılar :: @ (e-posta işareti); KASHIRINA / Tatiana / 11 / RUS (halterci görseli); ДОСТОЕВСКИЙ (kitap kapağı); PATRIOT (araç); ВОКРУГ СВЕТА / ИСТОРИЯ ЖИЗНИ ОДНОГО ЛЕОПАРДА (dergi kapağı)
+#Ders 3
+##Sayfa 14–15 · Fonetik ve Где? (Урок 3)
+@Konular
+Sayfa 14, 1. Alıştırma (TB11) :: Ünlü karşıtlıkları у – ы, у – о, у – а, ы – а.
+2. Alıştırma (TB12) :: Sert ve yumuşak çiftler: а–я, у–ю, о–ё, э–е, ы–и.
+3. Alıştırma (TB13) :: İkili/karşıt kelimeler ve özel isimler üzerinden ünsüz sertliği-yumuşaklığı ve vurgu.
+Sayfa 15 :: «Где?» sorusu ve «Вот он / Вот она / Вот оно» cevapları: Где суперма́ркет? — Вот он. · Где ка́рта? — Вот она́. · Где метро́? — Вот оно́. · Harita üzerinden yer bulma (1–20 numaralı mekânlar).
+@Fiiller
+ду́мать (düşünmek), слу́шать (dinlemek), слы́шать (duymak), ды́шит (nefes alıyor)
+Not :: «Кто э́то?», «Что э́то?», «Где ...?», «Вот он / она́ / оно́» kalıplarında şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 14, 1. Alıştırma)
+Kelime çiftleri :: ду́мать — дым, слу́шать — слы́шать, ту́ча — ты́сяча, му́зыка — мы́ло, ду́мать — ды́шит, вулка́н — вы́ход, суп — сын
+Kısa soru-cevaplar :: Кто э́то? — Это Ди́ма. · Кто э́то? — Это Ми́ша. · Что э́то? — Это Ри́га. · Что э́то? — Это дом. · Что э́то? — Это мы́ло. · Что э́то? — Это Крым.
+@Kelimeler (Sayfa 14, 3. Alıştırma)
+Н :: он, но́та, то́нна, А́нна, Анто́н · Непа́л, Днепр, не́бо, Нил · но́та — нет, но́рма — не́рвы
+Б :: Бонн, бо́мба, бана́н, ба́ба · бюрокра́т, биле́т, белору́с · банк, Берн, бар, бюро́
+П :: пу́ма, па́па, пан, па́па — ба́ба, пот — бот · Пеки́н, спекта́кль, пингви́н, пистоле́т · порт — Пётр, парк — пик
+В :: вода́, вот, два, Москва́ · ви́рус, Ви́ктор, ви́кинг, отве́т, приве́т · ва́за — ви́за, ва́нна — Ве́на, ва́рвар — ви́кинг
+Ф :: фо́то, Уфа́, фанто́м, факт · фи́ниш, ко́фе, фестива́ль · финн — фо́то, фено́мен — фонта́н, финанси́ст — фанта́ст
+@Kelimeler (Sayfa 15)
+Örnek ifadeler :: Где суперма́ркет? — Вот он. · Где ка́рта? — Вот она́. · Где метро́? — Вот оно́. · Где рестора́н? — Вот он.
+1–20 numaralı yerler :: рестора́н, парк, кафе́, шко́ла, университе́т, стадио́н, бар, оте́ль, метро́, дом, апте́ка, музе́й, у́лица, туале́т, банк, магази́н, суперма́ркет, кинотеа́тр, банкома́т, фи́тнес-клу́б
+##Sayfa 16–17 · Kişi zamirleri (Урок 3, Я, ТЫ...)
+@Konular
+Kişi zamirleri :: я, ты, он, она́, оно́, мы, вы, они́. Tekil ve çoğul tablosu ve kullanım örnekleri.
+Kısa diyaloglar :: Ты студе́нт?, Вы секретари́?, Вы студе́нты?, Кто они́? sorularıyla olumlu/olumsuz ve karşılaştırmalı cevaplar (Да, я студе́нт. · Нет, я дире́ктор. · Нет, мы тури́сты. · Он принц, а она́ принце́сса.).
+5. Alıştırma (TB14) :: СЛУШАЕМ ДИАЛОГИ И ВЫБИРАЕМ КАРТИНКИ. СЛУШАЕМ И ПИШЕМ, ЧТО ОНИ ГОВОРЯТ. Telefon ve kapı/tanışma konuşmalarındaki boşlukları tamamla (Диалог 1–6).
+Sayfa 17 :: Diyaloglara karşılık gelen 6 sahne çizimi (kapı açma, araç, polis, kapı gözetleme, evcil hayvan, telefon/masabaşı).
+@Fiiller
+слу́шаем (dinliyoruz), выбира́ем (seçiyoruz), пи́шем (yazıyoruz), говоря́т (söylüyorlar, konuşuyorlar)
+Not :: «Я студе́нт», «Ты студе́нт?», «Кто там?», «Это поли́ция?» gibi kalıplarda şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 16)
+Kişi zamirleri :: я, ты, он, она́, оно́, мы, вы, они́
+Sahne konuşmaları :: Ты студе́нт? — Да, я студе́нт. · Вы секретари́? — Нет, я дире́ктор. · Вы студе́нты? — Нет, мы тури́сты. · Кто они́? — Он принц, а она́ принце́сса.
+Диалог 1 :: — Алло́! — О́скар, это ___? — Да, это ___. Приве́т, Ка́тя.
+Диалог 2 :: — Кто там? — Ма́ма, это ___.
+Диалог 3 :: — ___ там? — Ма́ма, это ___.
+Диалог 4 :: — Алло́! — Приве́т, Макси́м! Это ___! — Кто — ___? — Как кто? Дире́ктор!
+Диалог 5 :: — Алло́! Это поли́ция? — Да, а ___ кто? — ___ журнали́ст. — Пра́вда?
+Диалог 6 :: — Это ___? — Нет, это не ___.
+@Kelimeler (Sayfa 17)
+Görsellerdeki yazılar :: Это ... (pembe araç, kısmen görünür); PRESS (kıyafet/çanta)
+##Sayfa 18–19 · Meslekler (Урок 3, ПРОФЕССИИ)
+@Konular
+Sayfa 18 :: Meslek isimleri ve cinsiyet eşleştirmeleri (он m. / она́ f. / он = она́ m.). Eril ve dişil ayrı meslek adları (студе́нт — студе́нтка, актёр — актри́са) ve iki cinsiyet için de eril biçimi kullanılan ortak adlar (врач, до́ктор, фото́граф, гид).
+Görselden meslek tanıma :: 12 görsel üzerinden «Это экономи́ст» gibi cümleler kur.
+Sayfa 19 :: «Кто э́то?», «Кто он?», «Кто она́?» soru-cevap kalıpları. Kişinin adı ile kimliği/mesleği/unvanı arasında bağ kur.
+6. bölüm :: 12 ismin (Ива́н, Серге́й, Ири́на, И́горь, Еле́на, Па́вел, Константи́н, Дидье́, Екатери́на, Людми́ла, Макси́м, А́нгела) altındaki görseller üzerinden kim olduklarını ve mesleklerini söyle.
+@Fiiller
+Bu sayfalarda açık bir fiil yok. Cümleler «olmak» fiili kullanılmayan isim cümleleridir (Он бизнесме́н, Она́ врач, Это экономи́ст).
+@Kelimeler (Sayfa 18)
+Örnek cümleler :: Он бизнесме́н. · Она́ врач. · Это экономи́ст.
+Eril — dişil çiftler :: студе́нт — студе́нтка, учи́тель — учи́тельница, актёр — актри́са, спортсме́н — спортсме́нка, журнали́ст — журнали́стка, официа́нт — официа́нтка
+Ortak (он = она́) meslekler :: экономи́ст, секрета́рь, инжене́р, поли́тик, солда́т, врач, до́ктор, фе́рмер, по́вар, ме́неджер, программи́ст, фото́граф, инстру́ктор, музыка́нт, гид
+@Kelimeler (Sayfa 19)
+Örnek diyaloglar :: — Кто э́то? — Это Уи́льям. — Кто он? — Он принц. · — Кто э́то? — Это Ме́рил. — Кто она́? — Она́ актри́са.
+İsimler :: Ива́н, Серге́й, Ири́на, И́горь, Еле́на, Па́вел, Константи́н, Дидье́, Екатери́на, Людми́ла, Макси́м, А́нгела
+#Ders 4
+##Sayfa 20–21 · Fonetik ve 1. grup fiiller (Урок 4)
+@Konular
+Sayfa 20, 1. Alıştırma (TB15) :: чи — ча — чо — че — чу: ч ünsüzünün ünlülerle birleşimleri.
+2. Alıştırma (TB16) :: Yumuşak/kayma ünlüler Я, Е, Ё, Ю: sözcük başında veya ünsüz/ünlü ardından okunuşları.
+3. Alıştırma (TB17) :: Kısa soru-cevap kalıpları: чита́ет, рабо́таешь, игра́ете, зна́ете, отдыха́ешь, отдыха́ете fiilleriyle olumlu/olumsuz kısa diyaloglar.
+4. Alıştırma (TB18) :: Hece vurgusu modelleri: ТА, ТА–та, та–ТА, ТА–та–та, та–ТА–та, та–та–ТА.
+Sayfa 21, ГЛАГОЛ: ГРУППА 1 :: ЗНАТЬ çekimi. Şimdiki zaman kişi ekleri: -Ю / -У, -ЕШЬ, -ЕТ, -ЕМ, -ЕТЕ, -ЮТ / -УТ. я зна́ю, ты зна́ешь, он/она́ зна́ет, мы зна́ем, вы зна́ете, они́ зна́ют.
+Temel 1. grup mastarlar :: знать / чита́ть, де́лать / изуча́ть, игра́ть / слу́шать, ду́мать / понима́ть, рабо́тать / отдыха́ть.
+Görsel cümlelerle pratik :: Telefon, arama motoru, dil öğrenme, çalışma, dinlenme ve oyun sahneleri üzerinden şimdiki zaman cümleleri.
+@Fiiller (mastar)
+знать (bilmek), чита́ть (okumak), де́лать (yapmak), изуча́ть (çalışmak, öğrenmek, incelemek), игра́ть (oynamak, çalmak), слу́шать (dinlemek), ду́мать (düşünmek), понима́ть (anlamak), рабо́тать (çalışmak, iş/emek), отдыха́ть (dinlenmek)
+@Fiiller (çekimli)
+Знать :: я зна́ю, ты зна́ешь, он/она́ зна́ет, мы зна́ем, вы зна́ете, они́ зна́ют
+Sayfada geçenler :: чита́ет, рабо́таешь, рабо́таю, игра́ете, игра́ем, зна́ете, не зна́ю, отдыха́ешь, отдыха́ю, отдыха́ете, отдыха́ем
+Cümlelerde :: слу́шаю (Алло́, алло́! Я слу́шаю.) · зна́ет (Это «Гугл». Он всё зна́ет.) · не зна́ю (Я не зна́ю ру́сский язы́к.) · изуча́ем (Мы изуча́ем ру́сский язы́к.) · рабо́тает (Он рабо́тает.) · отдыха́ет (Она́ отдыха́ет.) · игра́ют (Они́ игра́ют.)
+@Kelimeler (Sayfa 20)
+1. Alıştırma :: чита́ть — учи́тель, изуча́ть — ча́сто, горячо́ — чёрт, чей — уче́бник, хочу́ — чу́до
+2. Alıştırma, Я :: я, моя́, Я́лта
+2. Alıştırma, Е :: ешь, есть, е́сли
+2. Alıştırma, Ё :: её, моё, твоё
+2. Alıştırma, Ю :: юг, ю́мор, Югосла́вия
+3. Alıştırma, diyaloglar :: — Анто́н чита́ет? — Да, он чита́ет. · — Ты рабо́таешь? — Да, я рабо́таю. · — Вы игра́ете? — Да, мы игра́ем. · — Вы зна́ете? — Нет, не зна́ю. · — Ты отдыха́ешь? — Да, я отдыха́ю. · — Вы отдыха́ете? — Да, мы отдыха́ем.
+4. Alıştırma, ТА :: где, нет, гид, да, дом, ночь, стол, стул, класс, кто, что
+4. Alıştırma, ТА–та :: вре́мя, и́мя, кни́га, дя́дя, су́мка, па́па, гру́ппа, мо́ре, окно́, журна́л, Приве́т!
+4. Alıştırma, та–ТА :: актёр, вино́, окно́, музе́й, Пока́!, теа́тр, такси́ст, тури́ст
+4. Alıştırma, ТА–та–та :: актри́са, газе́та, гита́ра, дире́ктор, компью́тер, маши́на, мужчи́на, пробле́ма, профе́ссор
+4. Alıştırma, та–ТА–та :: адвока́т, инжене́р, телефо́н, капита́н, рестора́н, журнали́ст, магази́н, музыка́нт, секрета́рь
+@Kelimeler (Sayfa 21)
+Görsel cümleler :: Алло́, алло́! Я слу́шаю. · Это «Гугл». Он всё зна́ет. · Я не зна́ю ру́сский язы́к. · Мы изуча́ем ру́сский язы́к. · Он рабо́тает. · Она́ отдыха́ет. · Они́ игра́ют.
+##Sayfa 22–23 · Eylem soruları ve diyaloglar (Урок 4)
+@Konular
+Sayfa 22, 5. Alıştırma (ПИШЕМ СЛОВА) :: Что вы де́лаете?, Что ты де́лаешь?, Что он де́лает?, Вы понима́ете?, Они́ рабо́тают?, Вы зна́ете ру́сский язы́к? sorularıyla kişi zamirlerine göre cevapları tamamla.
+Görsellerle eylem eşleştirme :: Kitap okuma, oyun, çalışma, dinleme, dinlenme ve sınıf sahneleri üzerinden fiil ve nesne/dil ifadeleri üret.
+Sayfa 23, 6. Alıştırma (TB19) :: СМОТРИМ НА КАРТИНКИ И ГОВОРИМ, ЧТО ОНИ ДЕЛАЮТ. ЧИТАЕМ ДИАЛОГИ И ДУМАЕМ, ГДЕ КАРТИНКА. ПОТОМ СЛУШАЕМ ДИАЛОГИ И ГОВОРИМ, ГДЕ ОШИБКА. 1–7 numaralı diyalogları oku, görseli bul, dinle ve hatayı (оши́бка) bul.
+Diyalog konuları :: Tenis ve futbol, İngilizce ve Rusça bilme, çalışma ve dinlenme, rock müzik dinleme, Rusça öğrenme.
+@Fiiller
+Yönergelerde :: пи́шем (yazıyoruz), смо́трим (bakıyoruz), говори́м (söylüyoruz, konuşuyoruz), чита́ем (okuyoruz), ду́маем (düşünüyoruz), слу́шаем (dinliyoruz)
+Soru ve cevaplarda :: де́лаете (yapıyorsunuz), де́лаешь (yapıyorsun), де́лает (yapıyor), де́лают (yapıyorlar), понима́ете (anlıyor musunuz), рабо́тают (çalışıyorlar mı), рабо́таю (çalışıyorum), рабо́таешь (çalışıyor musun), зна́ете (biliyor musunuz), зна́ю (biliyorum), чита́ю (okuyorum), игра́ешь (oynuyor musun), игра́ю (oynuyorum), отдыха́ю (dinleniyorum), слу́шаешь (dinliyor musun), слу́шаю (dinliyorum), изуча́ем (öğreniyoruz, çalışıyoruz)
+@Kelimeler (Sayfa 22)
+Soru ve cevap kalıpları :: — Что вы де́лаете? — Мы ... · — Что ты де́лаешь? — Я ... · — Что он де́лает? — Он ... · — Вы понима́ете? — Да, я ... · — Они́ рабо́тают? — Нет, они́ ... · — Вы зна́ете ру́сский язы́к? — Нет, мы ... ру́сский. А вы?
+Görsellerdeki yazılar :: РУССКИЙ ЯЗЫК (kitap/materyal kapağı); dikey Çince/kaligrafi metin
+@Kelimeler (Sayfa 23, 6. Alıştırma)
+1 :: — Что ты де́лаешь? — Я чита́ю.
+2 :: — Что вы де́лаете? — Я рабо́таю.
+3 :: — Ты игра́ешь в футбо́л? — Нет, я игра́ю в те́ннис. А ты?
+4 :: — Ты рабо́таешь? — Нет, я отдыха́ю.
+5 :: — Вы зна́ете англи́йский? — Да, зна́ю. А вы?
+6 :: — Что ты слу́шаешь? — Я слу́шаю рок!
+7 :: — Что вы де́лаете? — Мы изуча́ем ру́сский!
+##Sayfa 24–25 · Мно́го / ма́ло (Урок 4)
+@Konular
+Sayfa 24, 7. Alıştırma :: СМОТРИМ НА КАРТИНКИ, СПРАШИВАЕМ И ОТВЕЧАЕМ. ЧТО ДЕЛАЕТ / НЕ ДЕЛАЕТ ВАШ ПАРТНЁР? Görsellerdeki spor, müzik, yayın ve dilleri kullanarak partnerin ne yapıp ne yapmadığını sor ve cevapla.
+12 görsel kart :: Futbol, rap, dergiler, İspanyolca, kitaplar, Çince, tenis, rock, İngilizce, dedektif romanları, Rusça, golf.
+Sayfa 25, 8. Alıştırma (ПРАВДА ИЛИ НЕПРАВДА?) :: Köpek, öğrenci, iş insanı ve büyükanne için verilen eylem ifadelerini doğru/yanlış (пра́вда / непра́вда) olarak değerlendir.
+МНОГО / МАЛО :: мно́го (çok, elma yığını görseli) ve ма́ло (az, tek elma görseli).
+9. Alıştırma (МНОГО / МАЛО / НЕ) :: Öğrenciler, müzisyenler, robot ve я öznesiyle зна́ют/зна́ет/зна́ю, ду́мают/ду́мает/ду́маю, чита́ют/чита́ет/чита́ю, отдыха́ют/отдыха́ет/отдыха́ю, рабо́тают/рабо́тает/рабо́таю, игра́ют fiillerinde мно́го / ма́ло / не kullanımını tamamla.
+10. Alıştırma (TB20) :: СЛУШАЕМ ВОПРОСЫ И ОТВЕЧАЕМ. Soruları dinle ve cevapla.
+11. Alıştırma :: А СЕЙЧАС РАБОТАЕМ В ПАРЕ. ДЕЛАЕМ ДИАЛОГИ. Ikili çalışmayla мно́го / ма́ло / не odaklı diyaloglar kur (чита́ть, ду́мать, знать, рабо́тать, отдыха́ть).
+@Fiiller (mastar)
+чита́ть (okumak), ду́мать (düşünmek), знать (bilmek), рабо́тать (çalışmak), отдыха́ть (dinlenmek)
+@Fiiller (çekimli)
+Yönergelerde :: смо́трим (bakıyoruz), спра́шиваем (soruyoruz), отвеча́ем (cevaplıyoruz), рабо́таем (çalışıyoruz, «рабо́таем в па́ре»), де́лаем (yapıyoruz, «де́лаем диало́ги»)
+Olumlu ve olumsuz :: де́лает / не де́лает (yapıyor / yapmıyor), слу́шаешь / не слу́шаю (dinliyor musun / dinlemiyorum), чита́ешь / чита́ю / не чита́ет / чита́ют / чита́ет (okuyorsun / okuyorum / okumuyor / okuyorlar / okuyor), зна́ешь / не зна́ю / зна́ют / зна́ет / зна́ю (biliyor musun / bilmiyorum / biliyorlar / biliyor / biliyorum), игра́ешь / не игра́ю / игра́ю / игра́ют (oynuyor musun / oynamıyorum / oynuyorum / oynuyorlar), рабо́тает / не рабо́тает / рабо́тают / рабо́таю (çalışıyor / çalışmıyor / çalışıyorlar / çalışıyorum), отдыха́ет / не отдыха́ет / отдыха́ют / отдыха́ю (dinleniyor / dinlenmiyor / dinleniyorlar / dinleniyorum), не понима́ет (anlamıyor), ду́мает / ду́мают / ду́маю (düşünüyor / düşünüyorlar / düşünüyorum), де́лает (yapıyor, «де́лает тату́»)
+@Kelimeler (Sayfa 24)
+Model ve kısa diyaloglar :: Что де́лает / не де́лает ваш партнёр? · — Ты слу́шаешь ра́дио? — Нет, не слу́шаю. А ты? · — Ты чита́ешь бло́ги? — Да, чита́ю. А ты? · — Ты зна́ешь италья́нский язы́к? — Нет, не зна́ю. А ты зна́ешь? · — Ты игра́ешь в гольф? — Нет, не игра́ю. Я игра́ю в баскетбо́л. А ты?
+12 görsel kelimesi :: футбо́л, рэп, журна́лы, испа́нский язы́к, кни́ги, кита́йский язы́к, те́ннис, рок, англи́йский язы́к, детекти́вы, ру́сский язы́к, гольф
+@Kelimeler (Sayfa 25)
+8. Alıştırma, Пра́вда или непра́вда? :: 1. Соба́ка: рабо́тает, отдыха́ет, не слу́шает, ду́мает, не понима́ет · 2. Студе́нт: не отдыха́ет, ду́мает, не чита́ет, рабо́тает · 3. Бизнесме́н: не рабо́тает, отдыха́ет, ду́мает, не чита́ет кни́ги · 4. Ба́бушка: слу́шает рэп, рабо́тает, не отдыха́ет, чита́ет, де́лает тату́
+Много / мало :: мно́го, ма́ло
+9. Alıştırma :: 1. Студе́нты: зна́ют, ду́мают, чита́ют, отдыха́ют · 2. Музыка́нты: игра́ют, чита́ют, отдыха́ют, рабо́тают · 3. Ро́бот: зна́ет, рабо́тает, отдыха́ет, ду́мает! · 4. Я: зна́ю, ду́маю, чита́ю, рабо́таю, отдыха́ю
+11. Alıştırma, model :: А сейча́с рабо́таем в па́ре. Де́лаем диало́ги: — Ты мно́го чита́ешь? — Нет, я ма́ло чита́ю. А ты? · — Ты мно́го ...? — Да, я мно́го ... / — Нет, я ма́ло ... / — Нет, я не ...
+#Ders 5
+##Sayfa 26–27 · Fonetik, 1. ve 2. grup fiiller (Урок 5)
+@Konular
+Sayfa 26, 1. Alıştırma (TB21) :: Sert-yumuşak hece çiftleri (ла — ля, лу — лю, ло — лё, лэ — ле, лы — ли, да — дя vb.).
+2. Alıştırma (TB22) :: ра — ря, ру — рю, ро — рё, рэ — ре, ры — ри hece çiftleri ve örnek kelimeler (ра́дио — ря́дом, брю́ки — рука́).
+3. Alıştırma (TB23) :: Vurgu kalıpları: та – ТА, ТА – та, ТА – та – та, та – та – ТА.
+1. grup fiillerin devamı :: Öğün ve günlük eylem fiilleri (за́втракать, обе́дать, у́жинать, гуля́ть, пла́вать, спра́шивать, отвеча́ть) ve isim karşılıkları (за́втрак, обе́д, у́жин).
+Sayfa 27, 2. grup fiil çekimi (ГОВОР-И-ТЬ) :: Şimdiki zaman ekleri -Ю, -ИШЬ, -ИТ, -ИМ, -ИТЕ, -ЯТ. я говорю́, ты говори́шь, он/она́ говори́т, мы говори́м, вы говори́те, они́ говоря́т.
+2. grup mastarlar :: говори́ть, смотре́ть, кури́ть, по́мнить (görsellerle tanıtım).
+Diller (говори́ть по-...) :: по-ру́сски, по-англи́йски, по-неме́цки, по-туре́цки, по-францу́зски, по-испа́нски, по-италья́нски, по-ара́бски. ру́сский ➔ по-ру́сски dönüşümü.
+4 ve 5. Alıştırmalar (TB24, ДЕЛАЕМ ДИАЛОГИ) :: «Они́ говоря́т по-ру́сски? Да! (Нет!) Они́ говоря́т...» ve «Вы говори́те по-ру́сски?» model diyaloğu.
+@Fiiller (mastar)
+1. grup :: гуля́ть (gezmek, dolaşmak), кури́ть (sigara içmek), за́втракать (kahvaltı yapmak), отдыха́ть (dinlenmek), у́жинать (akşam yemeği yemek), отвеча́ть (cevaplamak), спра́шивать (sormak), обе́дать (öğle yemeği yemek), пла́вать (yüzmek)
+2. grup :: говори́ть (konuşmak, söylemek), смотре́ть (bakmak, izlemek), кури́ть (sigara içmek), по́мнить (hatırlamak)
+@Fiiller (çekimli)
+Yönergelerde :: чита́ем, слу́шаем, выбира́ем
+3. Alıştırma :: спра́шиваю, слу́шаю, говори́шь
+говори́ть :: я говорю́, ты говори́шь, он/она́ говори́т, мы говори́м, вы говори́те, они́ говоря́т
+Sayfa 27 cümleleri ve diyalog :: понима́ет, не говори́т, не ку́рят, ду́мает, мно́го говори́т, говоря́т, говори́те, не говорю́
+@Kelimeler (Sayfa 26)
+1. Alıştırma :: ла — ля, лу — лю, ло — лё, лэ — ле, лы — ли, да — дя, ду — дю, до — дё, дэ — де, ды — ди, та — тя, ту — тю, то — тё, тэ — те, ты — ти, ма — мя, му — мю, мо — мё, мэ — ме, мы — ми
+2. Alıştırma :: ра — ря, ру — рю, ро — рё, рэ — ре, ры — ри · ра́дио — ря́дом, брю́ки — рука́, река́, рок, тури́ст, ры́ба, Ри́га
+3. Alıştırma :: гуля́ть, обе́д, отве́т, кури́ть, за́втрак, ма́ло, мно́го, у́жин, за́втракать, у́жинать, спра́шивать, слу́шаю, отдыха́ть, отвеча́ть, говори́ть, говори́шь
+Görsel altı :: за́втрак, обе́д, у́жин, за́втракать, обе́дать, у́жинать · Что это? · Это обед
+@Kelimeler (Sayfa 27)
+Örnek cümleler :: Соба́ка всё понима́ет, но не говори́т. · Спортсме́ны не ку́рят! · Интрове́рт ма́ло говори́т, но мно́го ду́мает. · Экстраве́рт мно́го говори́т.
+Diller :: по-ру́сски, по-англи́йски, по-неме́цки, по-туре́цки, по-францу́зски, по-испа́нски, по-италья́нски, по-ара́бски · ру́сский ➔ по-ру́сски
+Selamlama etiketleri :: Hi, Hola, Bonjour, Hallo, Selam, привет
+4 ve 5. Alıştırma :: Они́ говоря́т по-ру́сски? Да! (Нет!) Они́ говоря́т... · Де́лаем диало́ги.
+Model :: — Вы говори́те по-ру́сски? — Нет, не говорю́. Я говорю́ по-англи́йски и по-неме́цки. А вы? — А я говорю́ по-ру́сски, по-англи́йски и по-туре́цки! — Пра́вда? Фанта́стика!
+##Sayfa 28–29 · Fiil ekleri (Урок 5)
+@Konular
+Sayfa 28, 6. bölüm (TB25) :: СМОТРИМ, СПРАШИВАЕМ И ОТВЕЧАЕМ: КТО ОНИ, ЧТО ОНИ ДЕЛАЮТ. Turist grubu, fotoğrafçı, kitap yığını arasında çalışan kişi, tartışan kişiler, yorgun kişiler, boks, kahvaltı/yemek sahneleri üzerinden kim olduklarını ve ne yaptıklarını söyle.
+Dinleme ve ek tamamlama :: ПОТОМ СЛУШАЕМ ДИАЛОГИ И ВЫБИРАЕМ КАРТИНКИ. ПОТОМ ЧИТАЕМ ДИАЛОГИ И ПИШЕМ ОКОНЧАНИЯ. Diyalogları dinle, görseli seç, eksik fiil eklerini (окончания) yaz.
+Sayfa 29 :: 1–9 numaralı diyaloglarda 1. ve 2. grup fiillerin (обе́дать, за́втракать, гуля́ть, рабо́тать, знать, слу́шать, спра́шивать, отвеча́ть, де́лать, смотре́ть, кури́ть, ду́мать, понима́ть, говори́ть, по́мнить) kişiye göre çekim eklerini yaz.
+@Fiiller
+Yönergelerde :: смо́трим (bakıyoruz), спра́шиваем (soruyoruz), отвеча́ем (cevaplıyoruz), де́лают (yapıyorlar), слу́шаем (dinliyoruz), выбира́ем (seçiyoruz), чита́ем (okuyoruz), пи́шем (yazıyoruz)
+Eksik ekli fiiller (1–9. diyalog) :: обе́да___, не обе́да___, за́втрака___ · гуля́___, рабо́та___, зна___, слу́ша___, спра́шива___, отвеча___ · отдыха___, дела___ · смотр___, не понима___ · кур___, зна́ешь, не кур___ · дума___, работа___, не работа___ · говор___, не слуша___, слу́ша___ · помн___
+@Kelimeler (Sayfa 28)
+Sorular :: Кто они́? · Что они́ де́лают?
+Görsel bağlamı :: тури́сты, фото́граф, гид, бокс, за́втрак, обе́д, фильм
+@Diyaloglar (Sayfa 29)
+1 :: — Ты обе́да___? — Нет, я не обе́да___, я за́втрака___.
+2 :: — Вы сейча́с гуля́___? — Сейча́с нет. Я рабо́та___. Я гид. Я мно́го зна___. Тури́сты слу́ша___ и спра́шива___, а я отвеча___.
+3 :: — Вы сейча́с отдыха___? — Нет, я рабо́та___. Я фото́граф: я гуля́___ и дела___ фо́то.
+4 :: — Кто э́то? Что он дела___? — Э́то тури́ст. Он гуля́___ и смотр___ го́род.
+5 :: — Что ты смотр___? — Я смотр___ бокс. — Я не понима___, как ты э́то смотр___!
+6 :: — Ты кур___? — Коне́чно, нет! Ты зна́ешь, что я не кур___!
+7 :: — Вы дума___, она́ работа___? — Нет, она́ не работа___! — Она́ смотр___ фильм!
+8 :: — Я говор___, а вы не слуша___! — Коне́чно, мы слу́ша___, но мы не понима___, что вы говор___!
+9 :: — Ты помн___, кто я? — Коне́чно! Я не идио́т. Я помн___ всё!
+##Sayfa 30–31 · Меня зовут... (Урок 5)
+@Konular
+Sayfa 30, 7. bölüm (TB26) :: СМОТРИМ И ГОВОРИМ, КТО ЧТО ДЕЛАЕТ. Köpekle yürüyen Erik ve diğer 8 görsel (akşam yemeği/içki, tartışma, kulaklıkla dinleme, yüzme, uyuma, koltukta dinlenme, masa başında yemek/sohbet, masada çalışma/yazma) üzerinden kimin ne yaptığını söyle.
+СЛУШАЕМ И ПИШЕМ :: Görsellerin altındaki boş satırlara kişilerin eylemlerini yaz.
+Sayfa 31, 8. bölüm :: СМОТРИМ НА ТАБЛИЦУ И ГОВОРИМ: ЭТО БРЮС, ОН МНОГО ЧИТАЕТ, ... Брюс, Я, Студент 2 ve Учитель sütunlarındaki + ve - işaretlerine bakıp kişinin mesleğini ve alışkanlıklarını cümlelere dök.
+РАБОТАЕМ В ГРУППЕ :: Ad sorma (Как тебя зовут? — Меня зовут...) ve alışkanlık/eylem sorma (Ты много читаешь?, Вы работаете?, Вы много гуляете?) diyalogları.
+ГОВОРИМ :: Меня зовут..., Его зовут..., Её зовут..., Вас зовут... kalıplarını şimdiki zaman cümleleriyle birleştir.
+@Fiiller
+Yönergelerde :: смо́трим (bakıyoruz), говори́м (söylüyoruz, konuşuyoruz), де́лает (yapıyor), слу́шаем (dinliyoruz), пи́шем (yazıyoruz), рабо́таем (çalışıyoruz, «рабо́таем в гру́ппе»)
+Örnek ve tabloda :: гуля́ет (yürüyüş yapıyor), чита́ть / чита́ешь / чита́ю (okumak / okuyorsun / okuyorum), отдыха́ть (dinlenmek), рабо́тать / рабо́таете (çalışmak / çalışıyor musunuz), изуча́ть (öğrenmek), смотре́ть / смо́трите (izlemek / izliyor musunuz), ду́мать / ду́мает (düşünmek / düşünüyor), слу́шать (dinlemek), гуля́ть / гуля́ете (gezmek / geziyor musunuz), кури́ть (sigara içmek), знать / зна́ет (bilmek / biliyor)
+зову́т :: Как тебя́ зову́т? · Меня́ зову́т... · Его́ зову́т... · Её зову́т... · Вас зову́т... (kelimesi kelimesine «çağırıyorlar», «adım...» anlamında)
+@Kelimeler
+Sayfa 30 :: Э́рик · Кто что де́лает? · соба́ка, рок, футбо́л
+Sayfa 31, tablo sütunları :: И́мя, Брюс, Я, Студе́нт 2, Учи́тель
+Sayfa 31, tablo satırları :: Профе́ссия (студе́нт), мно́го чита́ть, мно́го отдыха́ть, рабо́тать, изуча́ть ру́сский, смотре́ть футбо́л, мно́го ду́мать, слу́шать рок, мно́го гуля́ть, кури́ть, всё знать
+Grup çalışması :: Студе́нт 1: — Как тебя́ зову́т? · Студе́нт 2: — Меня́ зову́т ... · Студе́нт 1: — Ты мно́го чита́ешь? · Студе́нт 1: — Вы рабо́таете? · Учи́тель: — Да / Нет, я ... · Студе́нт 1: — Вы мно́го гуля́ете?
+ГОВОРИМ :: Меня́ зову́т... Я мно́го / ма́ло чита́ю... · Его́ зову́т... Он мно́го ду́мает... · Её зову́т... Она́ всё зна́ет... · Вас зову́т... Вы смо́трите футбо́л...
+##Sayfa 32–33 · Здесь / Там (Урок 5)
+@Konular
+Sayfa 32, Здесь / Там :: Yakındaki (здесь) ve uzaktaki (там) kişi veya nesneleri sorup konum bildirme (Ты где? — Я здесь. / Где гора́? — Она́ там.) ve ek konum soruları.
+9. Alıştırma :: ЧИТАЕМ МОДЕЛИ. СМОТРИМ НА КАРТИНКИ И ИГРАЕМ: ГДЕ ЭТО? Игра 1 «Это теа́тр» ve Игра 2 (Да. / Нет.) ile yer bulma oyunu.
+Mekân görselleri (Sayfa 32) :: Это теа́тр., Это парк., Это университе́т., Это о́фис., Это библиоте́ка., Это кафе́., Это дом., Это кинотеа́тр.
+Sayfa 33, mekân görselleri :: Это стадио́н., Это мо́ре., Это музе́й., Это туале́т.
+10. Alıştırma :: Okuma metni: insanların çalışmadıkları zaman yaptıkları ters aktiviteler (Вы понима́ете при́нцип? Как вы ду́маете, э́то пра́вда?).
+11. Alıştırma :: «Что вы де́лаете, когда́ вы не рабо́таете? — Когда́ я не рабо́таю, я ...» kalıbı ve mastar fiillerle boş zaman aktiviteleri.
+12. Alıştırma (ЧИТАЕМ, ДУМАЕМ И ОТВЕЧАЕМ) :: Beş arkadaşın (Макси́м, На́стя, Са́ша, Ро́ма, Серёжа) boş zaman aktiviteleri üzerine çıkarım bulmacası (Всё э́то непра́вильно. Кто что де́лает?).
+@Fiiller (mastar, 11. Alıştırma)
+Mastarlar :: отдыха́ть (dinlenmek), пла́вать (yüzmek), кури́ть (sigara içmek), чита́ть (okumak), ду́мать (düşünmek), смотре́ть (izlemek; «смотре́ть телеви́зор»), изуча́ть (öğrenmek; «изуча́ть язы́к»), гуля́ть (gezmek), слу́шать (dinlemek; «слу́шать подка́сты»), игра́ть (oynamak), де́лать (yapmak, çekmek; «де́лать се́лфи»)
+@Fiiller (çekimli)
+Sayfa 32 :: чита́ем, смо́трим, игра́ем, де́лаете, слу́шаем, не говори́м, не чита́ем, игра́ете, не игра́ем, игра́ет, зна́ю, обе́даем
+Sayfa 33 :: зна́ете, де́лают, не рабо́тают, отдыха́ют, ду́маю, не игра́ет, чита́ет, не чита́ет, смо́трит, не смо́трит, у́жинает, обе́дает, слу́шает, ку́рит, гуля́ет, понима́ете, ду́маете, не рабо́таете, не рабо́таю, чита́ем, ду́маем, отвеча́ем, слу́шают, смо́трят, пла́вают, обе́дают, изуча́ют, ду́мает, изуча́ет, пла́вает, де́лает
+@Kelimeler (Sayfa 32)
+Konum soruları :: здесь, там · Ты где? — Я здесь. · Где гора́? — Она́ там. · Где со́лнце?, Где учи́тель?, Где студе́нт?, Где Австра́лия? · Где су́мка?, Где кафе́?, Где туале́т?, Где кни́га?
+Игра 1. «Это теа́тр» :: — Что вы там де́лаете? — Мы там смо́трим и слу́шаем. Мы не говори́м и не чита́ем. — Вы игра́ете? — Нет, мы там не игра́ем. Актёр игра́ет, а мы смо́трим. — Я зна́ю, э́то теа́тр.
+Игра 2. Да. / Нет. :: — Мы там игра́ем? — Нет. — Мы там обе́даем? — Да. — Это кафе́? — Да.
+8 mekân etiketi :: теа́тр, парк, университе́т, о́фис, библиоте́ка, кафе́, дом, кинотеа́тр
+@Kelimeler (Sayfa 33)
+4 mekân etiketi :: стадио́н, мо́ре, музе́й, туале́т
+10. Alıştırma metni :: Вы зна́ете, что лю́ди де́лают, когда́ они́ не рабо́тают? Да, они́ отдыха́ют. А как? Что они́ де́лают, когда́ отдыха́ют? Я ду́маю, я зна́ю.
+Okuma devamı :: Музыка́нт не игра́ет, он чита́ет. Профе́ссор не чита́ет, а смо́трит телеви́зор. Актёр не смо́трит фильм, он у́жинает в кафе́. Спортсме́н обе́дает, а по́вар смо́трит футбо́л. Фото́граф слу́шает ра́дио, до́ктор ку́рит, а программи́ст гуля́ет... Вы понима́ете при́нцип? Как вы ду́маете, э́то пра́вда?
+Öne çıkan kelimeler :: лю́ди, когда́, музыка́нт, профе́ссор, телеви́зор, актёр, фильм, кафе́, спортсме́н, по́вар, футбо́л, фото́граф, ра́дио, до́ктор, программи́ст, при́нцип, пра́вда
+11. Alıştırma :: — Что вы де́лаете, когда́ вы не рабо́таете? — Когда́ я не рабо́таю, я ... · язы́к, телеви́зор, подка́сты, се́лфи
+12. Alıştırma metni :: Макси́м, На́стя, Са́ша, Ро́ма, Серёжа отдыха́ют: слу́шают ра́дио, смо́трят фильм, пла́вают, обе́дают, изуча́ют кита́йский язы́к. · Са́ша ду́мает, что обе́дает На́стя. · На́стя ду́мает, что Ро́ма изуча́ет кита́йский язы́к, а Макси́м смо́трит фильм. · Ро́ма ду́мает, что Серёжа смо́трит фильм, а Са́ша — пла́вает. · Макси́м ду́мает, что На́стя слу́шает ра́дио, а обе́дает Ро́ма. · Всё э́то непра́вильно. Кто что де́лает?
+12. Alıştırma, öne çıkanlar :: кита́йский язы́к, непра́вильно
+#Ders 6
+##Sayfa 34–35 · Fonetik ve МЕНЯ, ТЕБЯ... (Урок 6)
+@Konular
+Sayfa 34, 1. Alıştırma (TB27) :: Sert/yumuşak zamir ve hece çiftleri: мы — ми, ты — ти, мы — меня́, на — ня, нас — меня́, ты — тебя́ ve е — ё, а — е, а — я eşleştirmeleri.
+2. Alıştırma (TB28) :: з / с ve ünsüz sertliği-yumuşaklığı: суп — систе́ма, со́ус — спаси́бо, су́мка — такси́, за — зя, зу — зю, зо — зё, зэ — зе, зы — зи.
+3. Alıştırma (TB29) :: Vurgu kalıpları: та – ТА, ТА – та, та – ТА – та, та – та – ТА, та – та – та – ТА – та.
+МЕНЯ, ТЕБЯ... :: Kişi zamirlerinin (я, ты, он, она́, мы, вы, они́) belirtme biçimleri: меня́, тебя́, его́, её, нас, вас, их. «слу́шать», «понима́ть», «знать» fiilleriyle kullanım.
+Sayfa 35 :: Zamir özet tablosu.
+«МЕНЯ ЗОВУТ...» :: Adı söyleme ve sorma: Меня́ зову́т..., Его́ зову́т..., Её зову́т..., Их зову́т... · Как тебя́ зову́т?, Как вас зову́т?, Как его́ зову́т?, Как её зову́т?, Как их зову́т?
+@Fiiller
+Mastar :: слу́шать (dinlemek), говори́ть (konuşmak)
+Çekimli :: зову́т (меня́, тебя́, его́, её, вас, их зову́т), слу́шаю (Я вас слу́шаю.), слу́шаем (Мы их слу́шаем.), понима́ю (Я тебя́ не понима́ю.), зна́ю (Я вас не зна́ю.), отдыха́ю
+@Kelimeler (Sayfa 34)
+1 ve 2. Alıştırma :: суп, систе́ма, со́ус, спаси́бо, су́мка, такси́, зо́на, зе́бра, ви́за, визи́т
+Cümleler :: Это ва́за. Это суп. Это мост. Это ро́за. Ро́за тут. Такси́ там. Вот ви́за.
+Karşıtlıklar :: суп — зуб, вас — ва́за, сон — зо́на, сад — зад
+3. Alıştırma, та – ТА :: меня́, тебя́, её, зову́т
+3. Alıştırma, ТА – та :: Ма́ша, Ми́ша, о́чень, фото́граф, слу́шать
+3. Alıştırma, та – ТА – та :: спаси́бо, прия́тно, Мари́на
+3. Alıştırma, та – та – ТА :: музыка́нт, комплиме́нт, президе́нт, программи́ст
+3. Alıştırma, та – та – ТА – та – та :: архите́ктор, отдыха́ю, говори́те, балери́на
+МЕНЯ, ТЕБЯ... cümleleri :: Алло́! Я вас слу́шаю. · Они́ музыка́нты. Мы их слу́шаем. · Я тебя́ не понима́ю. · Кто вы? Я вас не зна́ю.
+@Kelimeler (Sayfa 35)
+Zamirler :: я ➔ меня́, ты ➔ тебя́, он ➔ его́, она́ ➔ её, мы ➔ нас, вы ➔ вас, они́ ➔ их
+Adı söyleme :: Меня́ зову́т Бонд. Джеймс Бонд. · Его́ зову́т Шёрлок Холмс.
+Diyaloglar :: — Как вас зову́т? — А́нна. А вас? — А меня́ Дени́с. · — Как вас зову́т? — Макси́м Петро́вич. — А меня́ Ма́йкл. · — Приве́т! Как тебя́ зову́т? — Ва́ря. А тебя́? — А меня́ Тёма. · — Как его́ зову́т? — Его́ зову́т Рекс. · — Как её зову́т? — Её зову́т Му́рка. · — Как их зову́т? — Их зову́т Ди́на и Ари́на.
+##Sayfa 36–37 · Tanışma diyalogları (Урок 6)
+@Konular
+Sayfa 36, 4. bölüm :: «Вы их зна́ете? Как их зову́т?» sorusuyla görsellerdeki tanınmış kişileri tanı ve adlarını söyle.
+5. bölüm (TB30) :: СЛУШАЕМ ДИАЛОГИ И ВЫБИРАЕМ. 1–4 numaralı kişi/çift gruplarında duyulan isim ve meslek/rol seçeneklerini seç.
+6. bölüm :: ПРОВЕРЯЕМ ЗАДАНИЕ 5. ЧИТАЕМ ДИАЛОГИ. 1–4 numaralı tanışma ve meslek diyaloglarını okuyarak 5. alıştırmayı kontrol et.
+Sayfa 37 :: Karşılaştırmalı zamir soruları: Я ... ➔ А вы? А ты? А он? А она? А они? · Меня ... ➔ А вас? А тебя? А его? А её? А их?
+7. bölüm (TB31) :: СЛУШАЕМ ФРАЗЫ И ПИШЕМ НОМЕРА. меня́, тебя́, его́, её, нас, вас, их zamirleri için duyulan ifadelerin numaralarını yaz.
+8. bölüm (TB32) :: ЧИТАЕМ ДИАЛОГИ И ПИШЕМ, ПОТОМ СЛУШАЕМ. Диалог 1 ve Диалог 2 boşluklarını doldur, anlama sorularını yanıtla.
+@Fiiller
+Yönergelerde :: зна́ете (biliyor musunuz), зову́т (adı...), слу́шаем (dinliyoruz), выбира́ем (seçiyoruz), проверя́ем (kontrol ediyoruz), чита́ем (okuyoruz), пи́шем (yazıyoruz)
+Diyaloglarda :: де́лаете / де́лает (yapıyorsunuz / yapıyor), отдыха́ю (dinleniyorum), рабо́таю / не рабо́таю (çalışıyorum / çalışmıyorum), ду́маю (düşünüyorum, sanıyorum), изуча́ю / изуча́ет (öğreniyorum / öğreniyor)
+Not :: «Я студе́нтка», «Я фото́граф», «Она́ тури́стка», «Он ба́рмен», «Она́ моде́ль» kalıplarında şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 36)
+5. alıştırma isimleri :: Ива́н Петро́вич, И́горь Петро́вна, И́горь Петро́вич, Ири́на Петро́вна, А́нна Петро́вна, Али́на Петро́вна · Марк, Макс, Маркс, Екатери́на, Ко́стя, Ки́тти · Владисла́в, финанси́ст, экономи́ст, архите́ктор, Мари́я, официа́нтка · Том, студе́нт, спортсме́н, музыка́нт, Али́на, студе́нтка
+6. alıştırma, 1 :: Здра́вствуйте! Как вас зову́т? · Меня́ зову́т А́нна Петро́вна. А вас? · Меня́ зову́т И́горь Петро́вич. · О́чень прия́тно!
+6. alıştırma, 2 :: Приве́т! Как тебя́ зову́т? · Меня́ зову́т Ка́тя. А тебя́? · А меня́ Макс.
+6. alıştırma, 3 :: Меня́ зову́т Владисла́в. А вас? — А меня́ Мари́я. — Я архитекто́р. А вы? — А я экономи́ст.
+6. alıştırma, 4 :: Меня́ зову́т Али́на. А тебя́? — А меня́ Том. — Я студе́нтка. А ты? — А я музыка́нт.
+@Kelimeler (Sayfa 37)
+Zamirler :: я, вы, ты, он, она́, они́, меня́, вас, тебя́, его́, её, их, нас
+Диалог 1 :: Здра́вствуйте! ... зову́т Дми́трий. А как ... зову́т? · О́чень прия́тно! ... зову́т Еле́на. · О́чень прия́тно! А кто вы? Что вы здесь де́лаете? · ... тури́стка. ... здесь отдыха́ю. · А ... здесь рабо́таю. ... ба́рмен. · Пра́вда? Ко́фе, пожа́луйста!
+Диалог 1, sorular :: Как их зову́т? Она́ тури́стка? А он тури́ст? Что он де́лает? Что она́ де́лает? Кто де́лает ко́фе?
+Диалог 2 :: Приве́т! ... зову́т Ми́ша. · А ... Ма́ша. О́чень прия́тно! · О́чень прия́тно! ... ду́маю, ты моде́ль. · Спаси́бо за комплиме́нт, но ... не рабо́таю. ... студе́нтка. ... изуча́ю дизай́н. · Пра́вда? Как интере́сно! · А ... студе́нт? · Нет, ... фото́граф.
+Диалог 2, sorular :: Как их зову́т? Она́ моде́ль? А кто он? Что она́ изуча́ет? Кто де́лает комплиме́нт?
+##Sayfa 38–39 · Tanıtma ve okuma (Урок 6)
+@Konular
+Sayfa 38, 9. bölüm :: РАБОТАЕМ В ПАРЕ. СПРАШИВАЕМ И ОТВЕЧАЕМ. Kimlik kartı/profil şablonu (Моде́ль, Я:) üzerinden ad, meslek, bilinen diller ve o an yapılan eylemi sor ve cevapla.
+10. bölüm :: СМОТРИМ НА ФОТОГРАФИИ И ГОВОРИМ: КАК ИХ ЗОВУТ, КТО ОНИ. Вы его́ зна́ете? — Как его́ зову́т? — Кто он? kalıplarıyla 1–4 numaralı portreleri yorumla.
+Sayfa 39 :: 5–16 numaralı portre görselleri.
+11. bölüm :: ИЩЕМ В ИНТЕРНЕТЕ ПОРТРЕТЫ ЛЮДЕЙ ИЗ ВАШЕЙ СТРАНЫ ИЛИ ИЗ РОССИИ И СПРАШИВАЕМ В ГРУППЕ. Вы его́ / её зна́ете? Как его́/её зову́т? Как вы ду́маете, он спортсме́н / она́ спортсме́нка? А кто он / она́?
+12. bölüm :: ЧИТАЕМ. СПРАШИВАЕМ И ОТВЕЧАЕМ. Kafede çalışan garson Mariya'nın (Мари́я) müşterileri gözlemlediği ve çalışma koşullarını anlattığı kısa metin.
+@Fiiller
+Yönergelerde :: рабо́таем (çalışıyoruz), спра́шиваем (soruyoruz), отвеча́ем (cevaplıyoruz), смо́трим (bakıyoruz), говори́м (konuşuyoruz), и́щем (arıyoruz), слу́шаем (dinliyoruz), расска́зываем (anlatıyoruz), чита́ем (okuyoruz)
+Diyalog ve metinlerde :: зову́т, рабо́таете / рабо́таю / рабо́тают (çalışıyor musunuz / çalışıyorum / çalışıyorlar), говори́те / говорю́ (konuşuyor musunuz / konuşuyorum), де́лаете / де́лают (yapıyorsunuz / yapıyorlar), изуча́ю (öğreniyorum), зна́ете / зна́ю / не зна́ют (biliyor musunuz / biliyorum / bilmiyorlar), ду́маете / ду́маю (düşünüyorsunuz / düşünüyorum), за́втракают (kahvaltı yapıyorlar), обе́дают (öğle yemeği yiyorlar), у́жинают (akşam yemeği yiyorlar), смотрю́ (izliyorum), отдыха́ют (dinleniyorlar), говоря́т (diyorlar)
+@Kelimeler (Sayfa 38)
+Profil kartı :: Ка́рлос, фото́граф, испа́нский, англи́йский, Photo
+Model diyalog :: — Как вас зову́т? — Меня́ зову́т Ка́рлос. · — Вы рабо́таете? — Да, я фото́граф. · — Вы говори́те по-испа́нски? — Да, я говорю́ по-испа́нски и по-англи́йски. · — Что вы сейча́с де́лаете? — Сейча́с я изуча́ю ара́бский.
+10. alıştırma soruları :: — Вы его́ зна́ете? — Как его́ зову́т? — Кто он?
+Unvan ve meslekler :: бизнесме́н, миллиарде́р, музыка́нт, революционе́р, дикта́тор, худо́жник, поли́тик, программи́ст, президе́нт, писа́тель, ли́дер, ге́ний
+@Kelimeler (Sayfa 39)
+Portre numaraları :: 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+11. alıştırma kelimeleri :: Интерне́т, портре́ты, лю́ди, страна́, Росси́я, актёр, писа́тель, поли́тик, музыка́нт, спортсме́н, спортсме́нка
+11. alıştırma soruları :: Вы его́ / её зна́ете? Как его́/её зову́т? Как вы ду́маете, он спортсме́н / она́ спортсме́нка? А кто он / она́?
+12. alıştırma metni (Мари́я) :: Меня́ зову́т Мари́я. Я официа́нтка и рабо́таю в кафе́. Здесь клие́нты за́втракают, обе́дают и у́жинают, а я то́лько рабо́таю. · Я хорошо́ их зна́ю, а они́ не зна́ют, как меня́ зову́т. · Я смотрю́, как они́ отдыха́ют, и ду́маю: почему́ я рабо́таю, когда́ они́ отдыха́ют? Почему́ я не студе́нтка? · Клие́нты ча́сто де́лают комплиме́нты и говоря́т: «Спаси́бо!»
+Öne çıkan kelimeler :: официа́нтка, кафе́, клие́нты, то́лько, хорошо́, почему́, когда́, комплиме́нты, Спаси́бо!
+#Ders 7
+##Sayfa 40–41 · ЛЮБИТЬ (Урок 7)
+@Konular
+Sayfa 40, 1. Alıştırma (TB33) :: Sert/yumuşak hece ve ünsüz çiftleri: лу — лю, ла — ля, ло — лё, лы — ли, бу — бю, ба — бя, бы — би.
+2. Alıştırma (TB34) :: Vurgu ve ünlü okunuş karşıtlıkları: о = а / о́ = о, е = и / ё = е, я = и / я = я.
+2. grup ЛЮБИТЬ çekimi (ЛЮБ-И-ТЬ) :: я люблю́, ты лю́бишь, он/она́ лю́бит, мы лю́бим, вы лю́бите, они́ лю́бят. «Я тебя́ люблю́. А ты лю́бишь меня́?»
+3. Alıştırma (TB35) :: СЛУШАЕМ, КТО ЧТО ЛЮБИТ. ПИШЕМ ПЛЮС (+) ИЛИ МИНУС (-). Ми́ша, Ма́ша, Ка́тя и Ве́ра, Анто́н için 5 aktiviteyi dinleyip + veya - ile işaretle. Sol üstte Я, Студе́нты, Соба́ка özneleriyle люби́ть + mastar kalıbı.
+Sayfa 41, 4. Alıştırma :: СПРАШИВАЕМ И ОТВЕЧАЕМ. «Вы лю́бите покупа́ть сувени́ры?» ve «Ты лю́бишь чита́ть?» diyalogları; Что вы лю́бите де́лать?, Что вы не лю́бите?, Что все лю́бят? başlıkları.
+5. Alıştırma :: ПРАВДА (+) ИЛИ НЕПРАВДА (-)? Genel ifadelerin doğru/yanlış değerlendirmesi.
+6. Alıştırma (TB36) :: ЧИТАЕМ ТЕКСТЫ. ПОТОМ СЛУШАЕМ И ДУМАЕМ, ГДЕ ОШИБКИ (12). Текст 1 (О́льга), Текст 2 (И́горь), Текст 3 (Ди́ма): oku, dinle ve 12 hatayı bul.
+@Fiiller (mastar)
+Mastarlar :: люби́ть (sevmek, hoşlanmak), гуля́ть (gezmek), отдыха́ть (dinlenmek), чита́ть (okumak), пла́вать (yüzmek), рабо́тать (çalışmak), смотре́ть (izlemek; «смотре́ть телеви́зор, сериа́лы, футбо́л»), игра́ть (oynamak; «игра́ть в те́ннис, в бо́улинг»), изуча́ть (öğrenmek; «изуча́ть язы́к»), де́лать (yapmak, çekmek; «де́лать се́лфи, комплиме́нты»), за́втракать (kahvaltı yapmak; «за́втракать в кафе́»), слу́шать (dinlemek; «слу́шать комплиме́нты»), говори́ть (konuşmak; «говори́ть по-ру́сски»), покупа́ть (satın almak; «покупа́ть сувени́ры»)
+@Fiiller (çekimli)
+люби́ть :: я люблю́, ты лю́бишь, он/она́ лю́бит, мы лю́бим, вы лю́бите, они́ лю́бят
+Olumlu ve olumsuz :: лю́бит / не лю́бит (seviyor / sevmiyor), лю́бят / не лю́бят (seviyorlar / sevmiyorlar)
+Diğer :: пи́шем (yazıyoruz), смо́трит (izliyor), зову́т (Её зову́т О́льга; Его́ зову́т И́горь; Его́ зову́т Ди́ма), рабо́тает (çalışıyor; «рабо́тает ма́ло, мно́го»), ду́мает (düşünüyor), зна́ет (biliyor), говори́т (konuşuyor), понима́ет (anlıyor), чита́ем, слу́шаем, ду́маем (6. alıştırma yönergesinde)
+Not :: отды́х (dinlenme) fiil değil, isimdir. 2. alıştırmada отдыха́ть ile birlikte geçer.
+@Kelimeler (Sayfa 40)
+1. Alıştırma :: Луна́ — люблю́, ла́мпа — гуля́ть, сло́во — Алёна, кора́ллы — моде́ли, бу́ква — бюдже́т, банк — тебя́, клу́бы — бистро́
+2. Alıştırma :: смотре́ть — смо́трит, спортсме́н — спорт, столы́ — стол, отдыха́ть — отды́х, зову́т — о́чень, дела́ — де́лать, отвеча́ть — отве́т, тебя́ — апте́ка, телеви́зор — студе́нт, меня́ — ме́сто, маляри́я — я́сно, лягу́шка — земля́, мясно́й — мя́со, пятна́дцать — пять, прямо́й — пя́тница
+3. Alıştırma :: Ми́ша, Ма́ша, Ка́тя и Ве́ра, Анто́н · бокс, игра́ть в те́ннис, гуля́ть, смотре́ть телеви́зор, чита́ть
+Görsel yazısı :: Я тебя люблю / любишь (kısmi)
+@Kelimeler (Sayfa 41)
+4. Alıştırma, diyalog :: — Вы лю́бите покупа́ть сувени́ры? — Да, о́чень люблю́. · — Ты лю́бишь чита́ть? — Нет, не о́чень.
+Что вы лю́бите де́лать? :: пла́вать, гуля́ть, чита́ть, рабо́тать, отдыха́ть
+Что вы не лю́бите? :: смотре́ть сериа́лы, изуча́ть язы́к, смотре́ть телеви́зор, де́лать се́лфи, за́втракать в кафе́
+Что все лю́бят? :: слу́шать комплиме́нты, де́лать комплиме́нты, говори́ть по-ру́сски, игра́ть в бо́улинг, покупа́ть сувени́ры
+5. Alıştırma :: Мужчи́ны лю́бят смотре́ть футбо́л. · Ко́шки лю́бят пла́вать. · Пенсионе́ры не лю́бят смотре́ть телеви́зор. · Мужчи́ны лю́бят говори́ть комплиме́нты. · Же́нщины не лю́бят слу́шать комплиме́нты. · Студе́нты лю́бят чита́ть. · Тури́сты лю́бят де́лать се́лфи. · Лю́ди не лю́бят рабо́тать.
+Текст 1 :: Её зову́т О́льга. Она́ учи́тель. Она́ лю́бит рабо́тать, но рабо́тает ма́ло. Она́ лю́бит чита́ть и смотре́ть телеви́зор. Она́ ду́мает, что И́горь её лю́бит.
+Текст 2 :: Его́ зову́т И́горь. Он инжене́р. И́горь лю́бит рабо́тать и рабо́тает мно́го, день и ночь. Он мно́го ду́мает и мно́го зна́ет. Когда́ О́льга говори́т, что не лю́бит смотре́ть телеви́зор, он её понима́ет.
+Текст 3 :: Его́ зову́т Ди́ма. Он студе́нт. Он мно́го гуля́ет и не лю́бит чита́ть. Он ду́мает, что па́па и ма́ма его́ не лю́бят.
+#Ders 8
+##Sayfa 42–43 · Çoğul (Урок 8, ТУРИСТ — ТУРИСТЫ)
+@Konular
+Sayfa 42, 1. Alıştırma (TB37) :: Ötümlü ve ötümsüz ünsüzler. Б–П, В–Ф, Г–К, Д–Т, Ж–Ш, З–С çiftleri. Söz sonunda veya ötümsüz ünsüz önünde д ➔ [т], б ➔ [п], з ➔ [с], в ➔ [ф], г ➔ [к] değişimi ve tekil-çoğul örnekleri (сад — сады́, го́род — города́, глаз — глаза́).
+2. Alıştırma (TB38) :: к, г, х ünsüzlerinin ünlülerle birleşimi ve yazım kuralı: ка–ку–ко–ке–ки, га–гу–го–ге–ги, ха–ху–хо–хе–хи. су́мка — су́мки, кни́га — кни́ги, дух — ду́хи.
+3. Alıştırma (TB39) :: Sert ünlüler (А, У, О, Ы) ile yumuşak ünlüler/işaret (Я, Ю, Е/Ё, И, Ь) karşılaştırması ve biçim değişimi: кот — коту́ — кото́м — коты́, ма́ма — ма́му — ма́мой — ма́мы, гость — го́стю — го́стем — го́сти, семья́ — семью́ — семьёй — семьи́.
+İsimlerde çoğul (PLURAL) :: Tekil ve çoğul çiftleri: тури́ст — тури́сты, ро́за — ро́зы, ко́шка — ко́шки, сло́во — слова́.
+Sayfa 43, cinsiyete göre çoğul ekleri :: Eril (он) -ы / -и, dişil (она) -ы / -и, nötr (оно) -а / -я. к, г, х ve ч, ш, ж, щ harflerinden sonra -ы yerine -и yazılır.
+4. Alıştırma :: Görsellerden tekil ve çoğul ifadeler üret (журна́л, окно́, балери́на, рубль, соба́ка, письмо́).
+5. Alıştırma :: -ы, -и, -а ekleriyle kelime listesini çoğullaştır. Model: студе́нт ➔ студе́нты, студе́нтка ➔ студе́нтки.
+@Fiiller
+Bu iki sayfada fiil yok. Yalnızca ses/harf modelleri, tekil-çoğul isim çiftleri, «Это ...» kalıpları ve «Спаси́бо!» ifadeleri var.
+@Kelimeler (Sayfa 42)
+1. Alıştırma, д ➔ [т] :: год, ад, Это сад., Там за́пад., Это гид.
+1. Alıştırma, б ➔ [п] :: Это клуб., Это хлеб., Это зуб., Он сноб.
+1. Alıştırma, з ➔ [с] :: Это глаз., Это расска́з., Это прика́з., Это газ.
+Tekil — çoğul :: сад — сады́, гид — ги́ды, го́род — города́ · клуб — клу́бы, раб — ра́бы, гриб — гри́бы · флаг — фла́ги, враг — враги́, блог — бло́ги · глаз — глаза́, расска́з — расска́зы, круиз — круи́зы
+2. Alıştırma :: ка́рта, Ку́ба, ко́мплекс, раке́та, киломе́тр; су́мка — су́мки · гара́ж, гу́ру, го́род, геро́й, гимна́ст; кни́га — кни́ги · хара́ктер, хулига́н, хор, хи́мик; дух — ду́хи
+3. Alıştırma :: кот — коту́ — кото́м — коты́ · ма́ма — ма́му — ма́мой — ма́мы · гость — го́стю — го́стем — го́сти · семья́ — семью́ — семьёй — семьи́
+Çiftler ve ifadeler :: Это тури́ст. — Это тури́сты. · Это ро́за. — Это ро́зы. · Это ко́шка. — Это ко́шки. · Это сло́во. — Это слова́. · Спаси́бо! · СПАСИ́БО ВАМ БОЛЬШО́Е
+@Kelimeler (Sayfa 43)
+Tablo, eril (-ы / -и) :: магази́н — магази́ны, оте́ль — оте́ли, парк — па́рки, врач — врачи́
+Tablo, dişil (-ы / -и) :: маши́на — маши́ны, семья́ — семьи́, кни́га — кни́ги, де́вушка — де́вушки
+Tablo, nötr (-а / -я) :: сло́во — слова́, мо́ре — моря́
+4. Alıştırma etiketleri :: журна́л (kapakta хлеб • соль), окно́, балери́на, рубль (madeni parada 1 РУБЛЬ), соба́ка, письмо́
+5. Alıştırma listesi :: рестора́н, тури́ст, матрёшка, сайт, газе́та, письмо́, журна́л, кни́га, телефо́н, компью́тер, сло́во, же́нщина, спортсме́н, о́фис, банк, шко́ла, оте́ль, сувени́р
+##Sayfa 44–45 · Düzensiz çoğullar (Урок 8, ДРУГ — ДРУЗЬЯ)
+@Konular
+Sayfa 44, düzensiz ve -а vurgulu çoğullar :: друг — друзья́, челове́к — лю́ди, ребёнок — де́ти. Sonu -а ile biten çoğullar (дома́, города́, острова́, леса́, поезда́, паспорта́, учителя́, профессора́, мастера́, доктора́, повара́). -ья ile biten çoğullar (де́рево — дере́вья, стул — сту́лья). Daima çoğul kullanılanlar (де́ньги, роди́тели, часы́, очки́, брю́ки, джи́нсы).
+6. Alıştırma (Что здесь не так?) :: Kelime dizilerinde uyumsuz kelimeyi bul (Моде́ль ve 1–5 numaralı satırlar).
+7. Alıştırma (TB40) :: Слушаем. Пишем номер диалога. Говорим, где это? Diyalogları dinleyip numarasını yaz, 6 mekân/sahnenin nerede olduğunu söyle (Это банк.).
+Sayfa 45, 8. Alıştırma :: Я зна́ю, что / Я ду́маю, что + özne grubu + мно́го / ма́ло / не + mastar fiil sütunlarını birleştirerek cümle kur.
+9. Alıştırma (Вы согласны?) :: 1–8 numaralı genel yargılara katılıp katılmadığını + veya - ile belirt.
+10. Alıştırma :: Как запомнить слова? Вот методы: okuma, kart hazırlama, dizi/film/podcast izleme-dinleme, sözlük okuma ve tekrar yöntemleri ile öz değerlendirme soruları.
+@Fiiller
+8. alıştırma mastarları :: знать (bilmek), говори́ть (konuşmak), рабо́тать (çalışmak), игра́ть (oynamak), ду́мать (düşünmek), отдыха́ть (dinlenmek), гуля́ть (gezmek), пла́вать (yüzmek), кури́ть (sigara içmek), чита́ть (okumak), смотре́ть телеви́зор (televizyon izlemek)
+10. alıştırma mastarları :: чита́ть (okumak), де́лать (yapmak; «де́лать ка́рточки»), смотре́ть (izlemek; «смотре́ть фи́льмы и сериа́лы, са́йты»), слу́шать (dinlemek; «слу́шать подка́сты»), говори́ть (konuşmak), повторя́ть (tekrarlamak)
+Yönergelerde :: слу́шаем, пи́шем, говори́м (7. alıştırma)
+8. alıştırma modelinde :: ду́маю, чита́ют, ду́мают, отдыха́ют, зна́ют, не рабо́тают, зна́ю
+9. alıştırmada :: лю́бят / не лю́бят (seviyorlar / sevmiyorlar), говоря́т (konuşuyorlar), понима́ют (anlıyorlar), ку́рят (sigara içiyorlar), де́лают (yapıyorlar), чита́ют (okuyorlar), смо́трят (izliyorlar)
+10. alıştırmada :: изуча́ют (öğreniyorlar), спра́шивают (soruyorlar), зна́ете (biliyor musunuz), ду́маете (düşünüyorsunuz), рабо́тают (çalışıyorlar, işe yarıyorlar), де́лаете / не де́лаете (yapıyorsunuz / yapmıyorsunuz), изуча́ете (öğreniyorsunuz), по́мните (hatırlıyor musunuz)
+@Kelimeler (Sayfa 44)
+Düzensiz, -а, -ья ve daima çoğul :: друг — друзья́, челове́к — лю́ди, ребёнок — де́ти · дома́, города́, острова́, леса́, поезда́, паспорта́, учителя́, профессора́, мастера́, доктора́, повара́ · де́рево — дере́вья, стул — сту́лья · де́ньги, роди́тели, часы́, очки́, брю́ки, джи́нсы
+6. Alıştırma, model :: до́ллары, рубли́, фра́нки, лю́ди
+6. Alıştırma, 1 :: города́, у́лицы, такси́сты, авто́бусы, магази́ны, кио́ски
+6. Alıştırma, 2 :: такси́сты, экономи́сты, секретари́, компью́теры, ги́ды
+6. Alıştırma, 3 :: журна́лы, слова́, газе́ты, солда́ты, те́ксты
+6. Alıştırma, 4 :: студе́нты, тури́сты, профессора́, соба́ки, учителя́, друзья́
+6. Alıştırma, 5 :: соба́ки, де́ти, ко́шки, ти́гры, жира́фы, крокоди́лы
+7. Alıştırma :: Это банк. ve 6 mekân/sahne görseli.
+@Kelimeler (Sayfa 45)
+8. Alıştırma özneleri :: студе́нты, де́ти, же́нщины, мужчи́ны, поли́тики, пенсионе́ры, дельфи́ны
+8. Alıştırma zarfları :: мно́го, ма́ло, не
+9. Alıştırma :: 1. Все мужчи́ны лю́бят маши́ны. · 2. Дельфи́ны говоря́т и всё понима́ют. · 3. Же́нщины не ку́рят. · 4. Поли́тики мно́го говоря́т и ма́ло де́лают. · 5. Тури́сты о́чень лю́бят сувени́ры. · 6. Сейча́с студе́нты ма́ло чита́ют. · 7. Пенсионе́ры не смо́трят телеви́зор. · 8. Бизнесме́ны лю́бят то́лько де́ньги.
+10. Alıştırma, giriş :: Когда́ студе́нты изуча́ют языки́, они́ спра́шивают: ВЫ ЗНАЕТЕ СЕКРЕТЫ? Как запо́мнить слова́? Вот ме́тоды:
+10. Alıştırma, yöntemler :: чита́ть кни́ги и журна́лы, де́лать ка́рточки, смотре́ть фи́льмы и сериа́лы, слу́шать подка́сты, чита́ть бло́ги и смотре́ть са́йты, говори́ть слова́ и фра́зы, чита́ть словари́, повторя́ть, повторя́ть, повторя́ть
+10. Alıştırma, sorular :: Как вы ду́маете, все ме́тоды рабо́тают? Что вы де́лаете, а что не де́лаете? А вы зна́ете секре́ты? Как вы изуча́ете языки́? Вы по́мните все слова́?
+#Ders 9
+##Sayfa 46–47 · У меня есть... (Урок 9)
+@Konular
+Sayfa 46, 1. Alıştırma (TB41) :: СЛУШАЕМ И ПОВТОРЯЕМ, ПОТОМ ЧИТАЕМ. ш, ч, щ, ж ünsüzlerinin ünlülerle ([о], [у], [а], [э], [ы]) birleşimi ve sondaki ötümlü ünsüzlerin [ш] okunuşu (муж [ш], гара́ж [ш], эта́ж [ш]).
+2. Alıştırma (TB42) :: ш + ч = щ ve сч, жч = [щ]: щи, що, щу; борщ — пло́щадь — о́вощи; же́нщина + мужчи́на = сча́стье.
+3. Alıştırma (TB43) :: «У меня есть ...» kısa diyalogları: zaman, diploma, pasaport, bilet, vize sahipliğini sor. Cevaplar: Да, есть / Нет, ещё нет / Нет, у него нет / Нет, нéту / Да, уже́ есть.
+Sayfa 47, У КОГО ЕСТЬ + NOMINATIVE № 1 :: Sahiplik/bulunma kalıbı. Zamir tablosu: у меня́, у тебя́, у него́, у неё, у нас, у вас, у них, ЕСТЬ ... kalıbı.
+Görsellerle sahiplik cümleleri :: Köpek ve madalyalar, müzisyen ve gitar, milyonerler.
+3. Alıştırma :: В ГРУППЕ: ГОВОРИМ, ЧТО У ВАС ЕСТЬ. ДУМАЕМ, ЭТО ПРАВДА ИЛИ НЕТ. Sahip olduklarını söyle, Это пра́вда. / Это непра́вда. ile değerlendir.
+4. Alıştırma :: А СЕЙЧАС СМОТРИМ НА СЛОВА И ДЕЛАЕМ ДИАЛОГИ. ЕСТЬ — «+»; НЕТ — «-». Kelime kartlarıyla sahiplik diyalogları kur.
+@Fiiller
+Sayfa 46 :: слу́шаем (dinliyoruz), повторя́ем (tekrarlıyoruz), чита́ем (okuyoruz), пиши́те (yazın, emir kipi; «пиши́те — оши́бка»), ищу́ (arıyorum; «щу — ищу́»), есть (var; «У тебя́ есть...?», «Да, есть.»)
+Sayfa 47 :: есть (var; «У меня́ есть...», «У неё есть...», «У него́ есть...», «У них есть...», «У вас есть...», «У тебя́ есть...»), говори́м (konuşuyoruz), ду́маем (düşünüyoruz), смо́трим (bakıyoruz), де́лаем (yapıyoruz)
+Not :: «Нет, ещё нет» ve «Нет, у него́ нет / Нет, нéту» ifadelerinde «нет» bulunmama, yokluk sözcüğüdür.
+@Kelimeler (Sayfa 46)
+1. Alıştırma, ш :: шо — шок — хорошо́, шу — пишу́ — шу́тка, ша — ша́пка — Ма́ша — Ми́ша, ше — шесть — шеф, ши — шик — пиши́те — оши́бка
+1. Alıştırma, ж ve ч :: уже́ — ужа́сно — жить — жа́рко — журна́л — пожа́луйста · душ — муж [ш] — гара́ж [ш] — эта́ж [ш] · жар — шар, жить — шить, жесть — шесть · чай — час — чек — чуть-чу́ть — четы́ре — чемпио́н
+2. Alıştırma :: щи — ищи́, що — ещё, щу — ищу́ · борщ — пло́щадь — о́вощи · же́нщина + мужчи́на = сча́стье
+3. Alıştırma, diyaloglar :: — У тебя́ есть вре́мя? — Да, есть. · — У вас есть дипло́м? — Нет, ещё нет. · — У него́ есть па́спорт? — Нет, у него́ нет. / Нет, нéту. · — У нас есть биле́ты? — Да, уже́ есть. · — У вас есть ви́за? — Да, есть. · У меня́ есть вопро́с.
+@Kelimeler (Sayfa 47)
+Zamirler (У кого́...) :: меня́, тебя́, него́, неё, нас, вас, них
+Görsel cümleleri :: У меня́ есть соба́ка. У неё есть меда́ли. · Это Марк. Он музыка́нт. У него́ есть гита́ра. · Это миллионе́ры. У них есть всё!
+3. Alıştırma, model :: — У меня́ есть кот. — Это пра́вда. · — У меня́ есть пингви́н. — Это непра́вда.
+4. Alıştırma, modeller :: — У вас есть хо́бби? — Да, есть. А у вас? · — У вас есть дипло́м? — Нет, у меня́ нет. А у вас? · — У тебя́ есть друзья́? — Коне́чно, есть. А у тебя́? · — У тебя́ есть миллио́н? — Ещё нет. А у тебя́?
+4. Alıştırma, kelimeler :: хо́бби, рабо́та, пиани́но, вре́мя, соба́ка · друзья́, миллио́н, тала́нты, сайт, де́ньги · дипло́м, дом, меда́ль, тату́, ко́шка · маши́на, семья́, секрета́рь, пижа́ма, всё · пробле́мы, телеви́зор, ка́ктус · гита́ра, би́знес, микро́бы, матрёшка
+##Sayfa 48–49 · То́же / ещё ve kişisel eşyalar (Урок 9)
+@Konular
+Sayfa 48, 5. Alıştırma (TB44) :: Слушаем и пишем номер диалога. Где это? Dinlediğin diyalogların numarasını yaz, mekân etiketleriyle (авиакасса, аптека, ресторан, консульство, магазин Apple, кафе, магазин Сувениры) nerede olduğunu belirle.
+«ТОЖЕ = / ЕЩЁ +» :: то́же (de, da: aynı durumun paylaşılması) ile ещё (ve ayrıca, bir de: ekleme) farkı. Beethoven ve Leonardo görselleri ve kısa diyaloglarla örnekler.
+6. Alıştırma (То́же или ещё?) :: 1–8 numaralı diyalog ve cümlelerdeki boşlukları то́же veya ещё ile tamamla.
+Sayfa 49, 7. Alıştırma :: Читаем рассказ и отвечаем на вопросы. Mark'ın ailesi, mesleği, hobileri, evcil hayvanı, dil öğrenme nedeni ve televizyon alışkanlığı üzerine kısa metin. Sonra ПРАВДА ИЛИ НЕТ? (1–6) ve ПЕРЕСКАЗ (yeniden anlatım).
+«ЛИЧНЫЕ ВЕЩИ» :: Çantada (в су́мке) ve cepte (в карма́не) bulunan eşyalar: Что у неё в су́мке?, Что у него́ в карма́не?, А у вас? ve 12 eşya görseli.
+8. Alıştırma :: РАБОТА В ГРУППЕ. Grup içinde sahip olunan şeyleri söyle ve «Налоговый инспектор» (Vergi Müfettişi) oyunuyla mülk, varlık, gelir ve sır sorularını sor.
+@Fiiller
+Sayfa 48 :: слу́шаем (dinliyoruz), пи́шем (yazıyoruz), рабо́таю (çalışıyorum), люблю́ (seviyorum), говорю́ (konuşuyorum), зову́т (adı...), есть (var; «У меня́ есть соба́ка», «У вас есть сувени́ры?», «У меня́ есть брат», «У меня́ есть де́ньги»)
+Sayfa 49 :: чита́ем (okuyoruz), отвеча́ем (cevaplıyoruz), есть (var; «У меня́ есть друг», «У него́ есть пиани́но, семья́, вре́мя отдыха́ть, соба́ка», «У вас есть миллио́н?»), ду́маю (düşünüyorum), игра́ет (çalıyor, oynuyor), рабо́тает (çalışıyor), отдыха́ть (dinlenmek), изуча́ет (öğreniyor), говори́т (konuşuyor), лю́бит (seviyor), не смо́трит (izlemiyor), спра́шиваем (soruyoruz), говори́м (konuşuyoruz)
+@Kelimeler (Sayfa 48)
+Mekân etiketleri :: авиака́сса, апте́ка, рестора́н, ко́нсульство, магази́н Apple, кафе́, магази́н Сувени́ры
+Görsel cümleleri :: Бетхо́вен, Леона́рдо · Его́ зову́т Бетхо́вен. · Его́ то́же зову́т Бетхо́вен. · Его́ зову́т Леона́рдо. · Его́ то́же зову́т Леона́рдо.
+Diyaloglar :: — У меня́ есть соба́ка. — У меня́ то́же есть соба́ка. А ещё у меня́ есть ко́шка. · — Я студе́нт. — Я то́же студе́нтка. А ещё я рабо́таю в кафе́.
+6. Alıştırma, 1–2 :: 1. Я люблю́ тебя́! — Я ___ тебя́ люблю́! · 2. Я говорю́ по-англи́йски. — Я ___ говорю́ по-англи́йски. ___ я говорю́ по-ру́сски.
+6. Alıştırma, 3–4 :: 3. У вас есть сувени́ры? — Да, у нас есть матрёшки. — А что ___ у вас есть? · 4. Меня́ зову́т Мари́я. — Пра́вда?! А меня́ ___ !
+6. Alıştırma, 5–6 :: 5. Ко́фе, пожа́луйста! И ___ десе́рт! · 6. У меня́ есть брат. А ___ у меня́ есть сестра́.
+6. Alıştırma, 7–8 :: 7. У меня́ (есть) пробле́ма. — У меня́ ___ (есть) пробле́мы. Что ___ у тебя́ есть? · 8. У меня́ есть де́ньги. — У меня́ ___ есть де́ньги. А ___ у меня́ есть иде́я!
+@Kelimeler (Sayfa 49)
+7. Alıştırma metni :: У меня́ есть друг. Его́ зову́т Марк. Он компози́тор. Я ду́маю, что у него́ есть тала́нт. У него́ есть пиани́но, и он мно́го игра́ет. · У него́ есть семья́: жена́ и до́чка. Марк мно́го рабо́тает, но у него́ есть вре́мя отдыха́ть. У него́ есть соба́ка, поэ́тому он мно́го гуля́ет. · Ещё он изуча́ет ру́сский язы́к, потому́ что его́ жена́ говори́т по-ру́сски. Она́ лю́бит кино́ и теа́тр. Марк то́же лю́бит теа́тр, но абсолю́тно не смо́трит телеви́зор.
+ПРА́ВДА ИЛИ НЕТ? :: 1. Марк — музыка́нт. · 2. У него́ есть жена́ и сын. · 3. Его́ жена́ не смо́трит фи́льмы. · 4. Марк ма́ло рабо́тает. · 5. Марк игра́ет на пиани́но. · 6. У него́ есть соба́ка.
+ПЕРЕСКА́З :: Меня́ зову́т Марк. Я компози́тор...
+«ЛИ́ЧНЫЕ ВЕ́ЩИ» :: Что у неё в су́мке? У неё в су́мке... · Что у него́ в карма́не? У него́ в карма́не... · А у вас?
+12 eşya :: очки́, ру́чка, тетра́дь, ключи́, нау́шники, де́ньги, слова́рь, каранда́ш, па́спорт, ка́рта, флэ́шка, планше́т, телефо́н, заря́дка, космети́ка, вода́
+8. Alıştırma («Налоговый инспектор») :: миллио́н, миллиа́рд, дом, о́стров, кварти́ра, да́ча, ви́лла, би́знес, офшо́р, зарпла́та, соба́ка, ко́шка, маши́на, мотоци́кл, гара́ж, сад, зо́лото, а́кции, самолёт, секре́ты
+#Ders 10
+##Sayfa 50–51 · İyelik zamirleri (Урок 10, МОЙ, ТВОЙ...)
+@Konular
+Sayfa 50, 1. Alıştırma (TB45) :: Kayma ünsüzlü ses grupları (ай – ой – ей – уй – ый – ий) ve örnek kelimeler.
+2. Alıştırma (TB46) :: İyelik zamirleriyle kısa soru-cevap ve tanıtım cümleleri: Это твоя́ жена́?, Это твой брат?, Это твой дом?, Это твой биле́т?
+3. Alıştırma (TB47) :: Hece vurgu şemalarına göre kelime grupları: ТА, та – ТА, та – ТА – та, ТА – та, ТА – та – та, та – та – ТА.
+Sayfa 51, ЧЕЙ? ЧЬЁ? ЧЬЯ? ЧЬИ? :: я (мой / моё / моя́ / мои́), ты (твой / твоё / твоя́ / твои́), мы (наш / на́ше / на́ша / на́ши), вы (ваш / ва́ше / ва́ша / ва́ши). он (его́), она́ (её), они́ (их) biçimleri değişmez.
+Sahiplik sahneleri :: Araç kontrolü (Чья э́то маши́на? Ва́ша? — Нет, не моя́!), bagaj kontrolü (Чей э́то бага́ж? — Это мой бага́ж!), ev ve kız arkadaş (Я О́скар. Это мой дом и моя́ де́вушка.), okul (Мы студе́нты. Это на́ша шко́ла, наш класс и на́ши друзья́.), çok eşya (Чей э́то бага́ж? — Мой. Это всё моё.).
+4. Alıştırma :: ВЫБИРАЕМ: ЧЕЙ? ЧЬЯ? ЧЬЁ? ЧЬИ? Verilen isimlerin başına uygun soru zamirini seç.
+@Fiiller
+3. Alıştırma mastarları (Sayfa 50) :: гуля́ть (gezmek), игра́ть (oynamak, çalmak), чита́ть (okumak), кури́ть (sigara içmek), рабо́тать (çalışmak), у́жинать (akşam yemeği yemek), спра́шивать (sormak), за́втракать (kahvaltı yapmak), слу́шать (dinlemek), по́мнить (hatırlamak), говори́ть (konuşmak), изуча́ть (öğrenmek), отвеча́ть (cevaplamak), повторя́ть (tekrarlamak), понима́ть (anlamak), ду́мать (düşünmek)
+Yönergelerde :: чита́ем, слу́шаем, повторя́ем (Sayfa 50) · выбира́ем (Sayfa 51)
+Not :: «Это твоя́ жена́?», «Это мой брат», «Чья э́то маши́на?», «Мы студе́нты» kalıplarında şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 50)
+1. Alıştırma :: май, дай, мой, твой, свой, но́вый, ста́рый, хоро́ший, си́ний
+2. Alıştırma, diyaloglar :: — Это твоя́ жена́? — Да, это моя́ жена́. · — Это твой брат? — Да, это мой брат. · — Это твой дом? — Да, мой. · — Это твой биле́т? — Да, мой.
+2. Alıştırma, cümleler :: Это Ива́н. Он мой брат. Это Анто́н. Он мой друг. · Но́вый друг. Ста́рый дом. Хоро́ший план. · Кто э́то? — Это мой друг. Кто э́то? — Это мой брат. Кто э́то? — Это Ива́н.
+3. Alıştırma, ТА :: муж, дочь, мать, друг, лес, брат, сын, здесь, текст, там
+3. Alıştırma, та – ТА :: гуля́ть, проспе́кт, слова́рь, игра́ть, чита́ть, сестра́, кафе́, язы́к, портре́т, кури́ть, уже́, сосе́д, пото́м, трамва́й, часы́
+3. Alıştırma, та – ТА – та :: рабо́тать, колле́га, профе́ссор, подру́га, авто́бус, пробле́ма, коне́чно, ребёнок, копе́йка, соба́ка
+3. Alıştırma, ТА – та :: де́ти, у́жин, го́род, ма́ма, ду́мать, бе́рег, бра́тья, ро́за, за́втрак, брю́ки, ко́шка, о́стров, ру́сский, бу́ква, лю́ди, сло́во, слу́шать, ве́чер, по́езд, по́мнить
+3. Alıştırma, ТА – та – та :: у́жинать, спра́шивать, за́втракать, у́лица, ба́бушка
+3. Alıştırma, та – та – ТА :: говори́ть, изуча́ть, отвеча́ть, повторя́ть, понима́ть
+@Kelimeler (Sayfa 51)
+İyelik ve soru zamirleri :: мой, моё, моя́, мои́ · твой, твоё, твоя́, твои́ · наш, на́ше, на́ша, на́ши · ваш, ва́ше, ва́ша, ва́ши · его́, её, их · чей?, чьё?, чья?, чьи?
+Tablo ve sahne kelimeleri :: брат, сестра́, фо́то, колле́ги, дом, су́мка, письмо́, стол, маши́на, кафе́, де́ньги, бага́ж, де́вушка, студе́нты, шко́ла, класс, друзья́
+4. Alıştırma :: э́то кни́га?, э́то ве́щи?, э́то дом?, э́то письмо́?, э́то компью́тер?, э́то ме́сто?, э́то докуме́нты?, э́то фотогра́фия?, э́то ключи́?
+##Sayfa 52–53 · Kimlik, anket, его́ / её / их (Урок 10)
+@Konular
+Sayfa 52, 5. bölüm, kimlik kartı (Моя фотография) :: Soyadı (фами́лия), adı (и́мя), baba adı (о́тчество), adresi (а́дрес), çocukları (де́ти), mesleği (профе́ссия) ve ilgi alanları (интере́сы) üzerinden Aleksandr Puşkin'in tanıtım kartı.
+Resmi soru kalıpları :: Ва́ше и́мя? Ва́ша фами́лия? Otel/karşılama sahnesinde ad ve soyad sorma.
+Anket (Гостиничный комплекс «Космос») :: İsim, soyadı, meslek, ilgi alanları, telefon, e-posta ve adres alanlarından oluşan misafir kayıt formu.
+Sayfa 53, 6. bölüm :: İyelik zamirleriyle tutum karşılaştırması: Что говори́т эгои́ст? Что альтруи́ст? А что коммуни́ст? (not: деньги çoğuldur, zamir мои́ / твои́ / ва́ши / на́ши olmalıdır)
+7. bölüm :: ВЫБИРАЕМ: ЕГО́, ЕЁ, ИХ. Влади́мир и Ка́тя (муж и жена́) bağlamında kelimelerin önüne его́, её veya их seç, ev/bahçe/oda sahnesiyle ilişkilendir.
+@Fiiller
+говори́т :: (söylüyor, diyor; «Что говори́т эгои́ст?»). Başka fiil yok.
+Not :: «Влади́мир и Ка́тя — муж и жена́» kalıbında şimdiki zamanda «olmak» fiili kullanılmaz.
+@Kelimeler (Sayfa 52)
+Profil :: Моя́ фами́лия, Моё и́мя, Моё о́тчество, Мой а́дрес, Мои́ де́ти, Профе́ссия, Интере́сы
+Puşkin kartı :: Пу́шкин, Алекса́ндр, Серге́евич, Са́нкт-Петербу́рг, наб. реки́ Мо́йки, дом. 12, Алекса́ндр Алекса́ндрович Пу́шкин, Ната́лья Алекса́ндровна Пу́шкина, Григо́рий Алекса́ндрович Пу́шкин, Мари́я Алекса́ндровна Пу́шкина, поэ́т, поэ́зия
+Sahne soruları :: Ва́ше и́мя? · Ва́ша фами́лия?
+Anket :: И́мя, Фами́лия, Профе́ссия, Интере́сы, Телефо́н, E-mail, А́дрес
+@Kelimeler (Sayfa 53)
+6. Alıştırma :: Э́то не твои́ де́ньги, э́то мои́ де́ньги! · Мои́ де́ньги — ва́ши де́ньги! · Ва́ши де́ньги — э́то на́ши де́ньги! · Что говори́т эгои́ст? Что альтруи́ст? А что коммуни́ст?
+6. Alıştırma, kelime listesi :: дом, земля́, де́ньги, ве́щи, у́жин, маши́на, оде́жда
+7. Alıştırma :: Влади́мир и Ка́тя — муж и жена́. · Ка́тя — жена́, а Влади́мир — муж. А э́то ___ дом, ___ сад, ___ де́ти, ___ су́мка, ___ телеви́зор, ___ подру́га, ___ телефо́н, ___ кни́га, ___ маши́на, ___ докуме́нты, ___ соба́ка, ___ компью́тер, ___ гита́ра, ___ ро́за, ___ ди́ски, ___ журна́л, ___ стол, ___ часы́, ___ костю́м, ___ ка́рты, ___ де́ньги, ___ друг, ___ буты́лка, ___ фотогра́фия.
+##Sayfa 54–55 · Aile (Урок 10, СЕМЬЯ)
+@Konular
+Sayfa 54, СЕМЬЯ :: Aile ağacı üzerinde çekirdek ve geniş aile üyeleri (дя́дя, ба́бушка, де́душка, тётя, ма́ма, па́па, брат, я, сестра́).
+БРАТ — БРАТЬЯ (PLURAL) :: Akrabalık isimlerinin çoğulları: оте́ц — отцы́, мать — ма́тери, сын — сыновья́, дочь — до́чери, брат — бра́тья, сестра́ — сёстры, муж — мужья́, жена́ — жёны.
+8. Alıştırma :: Aile bileşimlerini adlandır: ма́ма + па́па =, сын + до́чка =, муж + жена́ + сын + до́чка =.
+9. Alıştırma (Это семья́?) :: Же́нщина + мужчи́на = ?, Же́нщина + ко́шка = ?, Мужчи́на + рабо́та = ?, Мужчи́на + маши́на = ? ВАШИ ВАРИАНТЫ? Aile tanımı tartışması.
+Sayfa 55, МОЯ СЕМЬЯ :: МАМА АЛЛА, ПАПА ИВАН ИЛЬИЧ, СТАНИСЛАВ, ЖЕНА АЛЛА, СЫН ОЛЕГ, ДОЧЬ ОЛЬГА aile şeması.
+10. Alıştırma :: ЧИТАЕМ ТЕКСТ И СПРАШИВАЕМ. Станислав'ın kendisini, annesini (А́лла Саве́льевна), babasını (Ива́н Ильи́ч), eşini (А́лла), oğlunu (Оле́г) ve küçük kızını (О́ля) anlattığı metin, sonda ПЕРЕСКАЗ.
+11. Alıştırma :: РАБОТА В ПАРЕ. СПРАШИВАЕМ И РИСУЕМ СЕМЬЮ ПАРТНЁРА. Partnerin ailesini sor ve çiz.
+@Fiiller
+Sayfa 54 :: Açık fiil yok (yalnızca isimler, + işaretleri ve ВАШИ ВАРИАНТЫ?).
+Yönergelerde (Sayfa 55) :: чита́ем (okuyoruz), спра́шиваем (soruyoruz), рису́ем (çiziyoruz)
+зову́т :: Меня́ зову́т Станисла́в. · Как его́ зову́т? · Её зову́т А́лла Саве́льевна. · Его́ зову́т Ива́н Ильи́ч. · Его́ зову́т Оле́г. · Её зову́т О́ля.
+Metinde :: говорю́ (konuşuyorum), чита́ю / чита́ет (okuyorum / okuyor), рабо́таю / не рабо́тает / рабо́тает (çalışıyorum / çalışmıyor / çalışıyor), есть (var; «У меня́ есть шко́ла, хо́бби, роди́тели», «У неё есть соба́ка, компью́тер»), у́жинаем (akşam yemeği yiyoruz), говори́м (konuşuyoruz), люблю́ / лю́бит / лю́бить (seviyorum / seviyor / sevmek), зна́ет (biliyor), ду́мает (düşünüyor), говори́т (konuşuyor), слу́шает (dinliyor), де́лает / де́лать (yapıyor / yapmak), смотре́ть (izlemek), игра́ть (oynamak), говори́ть (konuşmak)
+@Kelimeler (Sayfa 54)
+Aile ağacı :: СЕМЬЯ́, дя́дя, ба́бушка, де́душка, тётя, ма́ма, па́па, брат, я, сестра́
+Çoğul tablosu :: оте́ц — отцы́, мать — ма́тери · сын — сыновья́, дочь — до́чери · брат — бра́тья, сестра́ — сёстры · муж — мужья́, жена́ — жёны
+8. Alıştırma :: ма́ма + па́па =, сын + до́чка =, муж + жена́ + сын + до́чка =
+9. Alıştırma :: Это семья́?, Же́нщина + мужчи́на = ?, Же́нщина + ко́шка = ?, Мужчи́на + рабо́та = ?, Мужчи́на + маши́на = ?, ВАШИ ВАРИАНТЫ?
+@Kelimeler (Sayfa 55)
+Şema :: МАМА АЛЛА, ПАПА ИВАН ИЛЬИЧ, СТАНИСЛАВ, ЖЕНА АЛЛА, СЫН ОЛЕГ, ДОЧЬ ОЛЬГА
+10. Alıştırma, model :: Меня́ зову́т Станисла́в. — Как его́ зову́т?
+10. Alıştırma, kelimeler :: преподава́тель, по-ру́сски, по-англи́йски, по-францу́зски, немно́го, по-неме́цки, по-италья́нски, шко́ла, дире́ктор, хо́бби, спорт, му́зыка, кни́ги, языки́, роди́тели, худо́жник, А́лла Саве́льевна, пенсионе́рка, ново́сти, карти́ны, фантазёрка, рома́нтик, фото́граф, поэ́т, тала́нт, Ива́н Ильи́ч, газе́ты, пото́м, жена́, де́ти, сын, дочь, учи́тель, фило́соф, друг, Оле́г, матема́тик, эконо́мика, шко́льница, О́ля, соба́ка, друзья́, компью́тер, телефо́н, Интерне́т, фи́льмы, волонтёр
+ПЕРЕСКА́З :: Меня́ зову́т О́ля. Я шко́льница. У меня́ есть...
+11. Alıştırma :: — У тебя́ есть па́па / ма́ма... ? · — Как его́ / её зову́т? · — Кто он / она́? · — Он / она́ мно́го рабо́тает / чита́ет... ? · — Что он / она́ лю́бит де́лать? · — Что у него́ / у неё есть?`;
+const NOTES=[];
+NRAW.split('\n').forEach(l=>{l=l.trim();if(!l)return;
+  if(l.startsWith('##'))NOTES[NOTES.length-1].pages.push({t:l.slice(2).trim(),secs:[]});
+  else if(l[0]==='#')NOTES.push({t:l.slice(1).trim(),pages:[]});
+  else if(l[0]==='@'){const ps=NOTES[NOTES.length-1].pages;ps[ps.length-1].secs.push({h:l.slice(1).trim(),items:[]})}
+  else{const ps=NOTES[NOTES.length-1].pages,ss=ps[ps.length-1].secs,it=ss[ss.length-1].items,i=l.indexOf(' :: ');it.push(i>0?{l:l.slice(0,i),t:l.slice(i+4)}:{l:'',t:l})}});
+let NL=0,NQ='';
+function notesInit(){
+  $('#stage').innerHTML=`<div class="chips" id="nsub">${NOTES.map((n,i)=>`<button class="chip" data-i="${i}" aria-pressed="${i===NL}">${esc(n.t)}</button>`).join('')}</div>
+  <input type="search" id="nq" placeholder="Notlarda ara (Rusça veya Türkçe)" autocomplete="off" value="${esc(NQ)}"><div id="nbody"></div>`;
+  $('#nsub').onclick=e=>{const b=e.target.closest('button');if(b){NL=+b.dataset.i;NQ='';notesInit()}};
+  $('#nq').oninput=e=>{NQ=e.target.value;notesDraw()};
+  notesDraw();
+}
+function notesDraw(){
+  const q=lc(NQ.trim()),src=q?NOTES.flatMap(n=>n.pages.map(p=>[n,p])):NOTES[NL].pages.map(p=>[NOTES[NL],p]);
+  const html=src.map(([n,p],k)=>{
+    const secs=p.secs.map(s=>({h:s.h,items:q?s.items.filter(x=>lc(x.l+' '+x.t).includes(q)):s.items})).filter(s=>s.items.length);
+    if(!secs.length)return '';
+    return `<details ${q||k===0?'open':''}><summary>${q?esc(n.t)+' · ':''}${esc(p.t)}</summary>${secs.map(s=>`<div class="nh">${esc(s.h)}</div><ul class="nl">${s.items.map(x=>`<li>${x.l?`<b>${ru(x.l)}</b> · `:''}${ru(x.t)}</li>`).join('')}</ul>`).join('')}</details>`;
+  }).join('');
+  $('#nbody').innerHTML=html||'<p class="sm">Sonuç yok.</p>';
+}
+
+/* ---- SINAV ---- */
+const V1=[['знать','bilmek'],['читать','okumak'],['делать','yapmak'],['изучать','öğrenmek'],['играть','oynamak'],['слушать','dinlemek'],['думать','düşünmek'],['понимать','anlamak'],['работать','çalışmak'],['отдыхать','dinlenmek'],['гулять','gezmek'],['спрашивать','sormak'],['отвечать','cevaplamak'],['завтракать','kahvaltı yapmak'],['обедать','öğle yemeği yemek'],['ужинать','akşam yemeği yemek'],['плавать','yüzmek'],['повторять','tekrarlamak']];
+const V2={'говорить':['konuşmak','говорю','говоришь','говорит','говорим','говорите','говорят'],'смотреть':['izlemek','смотрю','смотришь','смотрит','смотрим','смотрите','смотрят'],'курить':['sigara içmek','курю','куришь','курит','курим','курите','курят'],'любить':['sevmek','люблю','любишь','любит','любим','любите','любят'],'помнить':['hatırlamak','помню','помнишь','помнит','помним','помните','помнят']};
+const PERS=['я','ты','он / она','мы','вы','они'];
+const VERBS=V1.map(v=>{const st=v[0].slice(0,-2);return{inf:v[0],tr:v[1],f:[st+'ю',st+'ешь',st+'ет',st+'ем',st+'ете',st+'ют']}}).concat(Object.keys(V2).map(k=>({inf:k,tr:V2[k][0],f:V2[k].slice(1)})));
+const PLP=[['сад','сады'],['гид','гиды'],['город','города'],['клуб','клубы'],['раб','рабы'],['гриб','грибы'],['флаг','флаги'],['враг','враги'],['блог','блоги'],['глаз','глаза'],['рассказ','рассказы'],['круиз','круизы'],['сумка','сумки'],['книга','книги'],['дух','духи'],['турист','туристы'],['роза','розы'],['кошка','кошки'],['слово','слова'],['магазин','магазины'],['отель','отели'],['парк','парки'],['врач','врачи'],['машина','машины'],['семья','семьи'],['девушка','девушки'],['море','моря'],['друг','друзья'],['человек','люди'],['ребёнок','дети'],['дом','дома'],['дерево','деревья'],['стул','стулья'],['отец','отцы'],['мать','матери'],['сын','сыновья'],['дочь','дочери'],['брат','братья'],['сестра','сёстры'],['муж','мужья'],['жена','жёны']];
+const ACC=[['меня','beni'],['тебя','seni'],['его','onu (erkek)'],['её','onu (kadın)'],['нас','bizi'],['вас','sizi'],['их','onları']];
+const UKO=[['у меня','benim'],['у тебя','senin'],['у него','onun (erkek)'],['у неё','onun (kadın)'],['у нас','bizim'],['у вас','sizin'],['у них','onların']];
+const POSS=[['benim',['мой','моя','моё','мои']],['senin',['твой','твоя','твоё','твои']],['bizim',['наш','наша','наше','наши']],['sizin',['ваш','ваша','ваше','ваши']]];
+const PN=[['брат',0],['дом',0],['стол',0],['друг',0],['сестра',1],['сумка',1],['машина',1],['книга',1],['семья',1],['письмо',2],['окно',2],['место',2],['друзья',3],['деньги',3],['ключи',3],['документы',3]];
+const CHEJ=[['книга',1],['дом',0],['письмо',2],['ключи',3],['документы',3],['фотография',1],['место',2],['компьютер',0],['вещи',3]];
+const TJ=[['— Я люблю тебя! — Я ___ тебя люблю!',0],['— Я говорю по-английски. — Я ___ говорю по-английски.',0],['Я говорю по-английски. А ___ я говорю по-русски.',1],['— У вас есть сувениры? — Да, матрёшки. — А что ___ у вас есть?',1],['— Меня зовут Мария. — Правда?! А меня ___!',0],['Кофе, пожалуйста! И ___ десерт!',1],['У меня есть брат. А ___ у меня есть сестра.',1],['— У меня есть деньги. — У меня ___ есть деньги.',0]];
+const GEN3=[['он','Eril'],['она','Dişil'],['оно','Nötr']];
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const mc=(sec,p,right,wrong,e)=>({sec,p,o:shuffle([{ok:true,h:ru(right)}].concat(wrong.map(x=>({ok:false,h:ru(x)})))),e});
+function exV(w,toRu){
+  const key=toRu?'tr':'ru',opts=[w];
+  for(const x of shuffle(WORDS)){if(opts.length>=4)break;if(lc(x.tr)!==lc(w.tr)&&!opts.some(o=>norm(o[key])===norm(x[key])))opts.push(x)}
+  return{sec:'Kelime',p:toRu?`<div class="sm">Türkçesi nedir?</div><div class="big">${ru(w.ru)}</div><div class="pron">${esc(w.pr)}</div>`:`<div class="sm">Rusçası nedir?</div><div class="big">${esc(w.tr)}</div>`,
+    o:shuffle(opts).map(o=>({ok:o===w,h:toRu?esc(o.tr):ru(o.ru)})),e:`${ru(w.ru)} (${esc(w.pr)}) = ${esc(w.tr)}`};
+}
+function exT(w){return{sec:'Kelime (yazma)',type:'type',p:`<div class="sm">Rusçasını yaz</div><div class="big">${esc(w.tr)}</div>`,ans:answers(w),show:`${ru(w.ru)} (${esc(w.pr)})`,e:`${ru(w.ru)} (${esc(w.pr)}) = ${esc(w.tr)}`}}
+function exGender(){
+  const bad=['понедельник','вторник','четверг','воскресенье'],g={a1:0,a2:1,a3:2};
+  const ws=WORDS.filter(w=>g[w.c]!==undefined&&!bad.includes(w.ru)&&!w.ru.includes(' ')),out=[];
+  pick(ws,4).forEach((w,i)=>{const gi=g[w.c];
+    if(i<2)out.push({sec:'Cinsiyet',p:`<div class="sm">Cinsiyeti hangisi?</div><div class="big">${ru(w.ru)}</div><div class="sm">${esc(w.tr)}</div>`,o:GEN3.map((x,k)=>({ok:k===gi,h:x[1]+' ('+x[0]+')'})),e:`${ru(w.ru)} = ${GEN3[gi][1]} (${GEN3[gi][0]})`});
+    else out.push({sec:'Cinsiyet',p:`<div class="sm">Boşluğu doldur</div><div class="big">Где ${ru(w.ru)}? — Вот ___.</div><div class="sm">${esc(w.tr)}</div>`,o:GEN3.map((x,k)=>({ok:k===gi,h:x[0]})),e:`${ru(w.ru)} ${GEN3[gi][1].toLowerCase()} olduğu için: Вот ${GEN3[gi][0]}.`});
+  });
+  return out;
+}
+function exPlural(){
+  return pick(PLP,4).map(([s,p])=>{
+    const base=s.replace(/[ьйяаоеё]$/,''),cand=new Set([s+'ы',s+'и',base+'ы',base+'и',base+'а',base+'я',base+'ья']);
+    pick(PLP,3).forEach(x=>cand.add(x[1]));cand.delete(p);cand.delete(s);
+    return mc('Çoğul',`<div class="sm">Çoğulu hangisi?</div><div class="big">${ru(s)}</div>`,p,pick([...cand],3),`${ru(s)} → ${ru(p)}`);
+  });
+}
+function exVerbs(){
+  return pick(VERBS,4).map(v=>{const k=Math.floor(Math.random()*6),w=pick(v.f.filter((x,i)=>i!==k),3);
+    return mc('Fiil çekimi',`<div class="sm">«${ru(v.inf)}» (${esc(v.tr)}) fiilini çekimle</div><div class="big">${esc(PERS[k])} ___</div>`,v.f[k],w,`${esc(PERS[k])} ${ru(v.f[k])} (${v.f.map(ru).join(', ')})`)});
+}
+function exMisc(){
+  const out=[];
+  pick(ACC,2).forEach(a=>out.push(mc('Zamirler',`<div class="sm">Boşluğa uygun zamir biçimi: O, ${esc(a[1])} tanımıyor.</div><div class="big">Он ___ не знает.</div>`,a[0],pick(ACC.filter(x=>x!==a).map(x=>x[0]),3),`${esc(a[1])} = ${ru(a[0])}. Я ➔ меня, ты ➔ тебя, он ➔ его, она ➔ её, мы ➔ нас, вы ➔ вас, они ➔ их`)));
+  const u=pick(UKO,1)[0];out.push(mc('Zamirler',`<div class="sm">«${esc(u[1])} köpeği var»</div><div class="big">___ есть собака.</div>`,u[0],pick(UKO.filter(x=>x!==u).map(x=>x[0]),3),`${ru(u[0])} есть = ${esc(u[1])} var`));
+  pick(CHEJ,2).forEach(([n,g])=>{const F=['чей','чья','чьё','чьи'];out.push({sec:'Чей? Чья? Чьё? Чьи?',p:`<div class="sm">Soru zamirini seç</div><div class="big">___ это ${ru(n)}?</div>`,o:F.map((f,k)=>({ok:k===g,h:ru(f)})),e:`${ru(n)} için: ${F[g]}`})});
+  pick(TJ,2).forEach(([t,a])=>out.push({sec:'То́же / ещё',p:`<div class="sm">то́же (de, da) mi, ещё (ayrıca, bir de) mi?</div><div class="big" style="font-size:22px">${esc(t)}</div>`,o:[{ok:a===0,h:'то́же'},{ok:a===1,h:'ещё'}],e:`Doğru: ${a===0?'то́же (aynı durum)':'ещё (ekleme)'}`}));
+  pick(POSS,2).forEach(([own,F],i)=>{const [n,g]=pick(PN,1)[0];out.push({sec:'İyelik zamirleri',p:`<div class="sm">Boşluğu doldur (${esc(own)})</div><div class="big">Это ___ ${ru(n)}.</div>`,o:F.map((f,k)=>({ok:k===g,h:ru(f)})),e:`${ru(n)} için ${esc(own)}: ${F[g]} (${F.join(' / ')})`})});
+  return out;
+}
+function examBuild(){
+  const okW=WORDS.filter(w=>!/[()?]/.test(w.ru)&&!w.ru.includes('/')&&w.ru.length>=3);
+  const vm=pick(WORDS.filter(w=>!/[?]/.test(w.ru)),9).map((w,i)=>exV(w,i%2===0));
+  const vt=pick(okW,6).map(exT);
+  return[].concat(alSound().slice(0,2).map(q=>({...q,sec:'Alfabe'})),alOrder().slice(0,2).map(q=>({...q,sec:'Alfabe (sıra)'})),vm,vt,exGender(),exPlural(),exVerbs(),exMisc());
+}
+let EX;
+function examInit(){
+  $('#stage').innerHTML=`<div class="q"><div class="big">Sınav</div><p>40 soru: alfabe, kelime, cinsiyet, çoğul, fiil çekimi, zamirler ve daha fazlası. Her seferinde yeni sorular gelir. Her cevaptan sonra doğrusunu görürsün.</p><button class="btn p" id="go" style="width:100%">Sınavı başlat</button></div>`;
+  $('#go').onclick=()=>examRun(examBuild());
+}
+function examRun(qs){EX={qs,i:0,res:[],done:false,ok:false,pick:null};examDraw()}
+function examJudge(x){
+  const q=EX.qs[EX.i];
+  const ok=q.type==='type'?(x!==null&&q.ans.has(norm(x))):q.o[x].ok;
+  EX.done=true;EX.ok=ok;EX.pick=x;EX.res.push({q,ok});examDraw();
+}
+function examDraw(){
+  if(EX.i>=EX.qs.length)return examEnd();
+  const st=$('#stage'),q=EX.qs[EX.i],d=EX.done;
+  const head=`<div class="prog"><b style="width:${EX.i/EX.qs.length*100}%"></b></div><div class="meta"><span>Soru ${EX.i+1}/${EX.qs.length} · ${esc(q.sec)}</span><span>Doğru ${EX.res.filter(r=>r.ok).length}</span></div>`;
+  const fb=`<div class="fb ${EX.ok?'':'no'}"><b>${EX.ok?'✓ Doğru.':'✗ Yanlış.'}</b> `;
+  let body;
+  if(q.type==='type'){
+    body=d?`<div class="q">${q.p}</div>${fb}${EX.pick?'Senin cevabın: '+esc(EX.pick)+'<br>':''}Doğrusu: <b>${q.show}</b></div><button class="btn p" id="xn" style="width:100%">Sonraki</button>`
+      :`<div class="q">${q.p}</div><input class="win" id="xa" lang="ru" placeholder="Rusçasını yaz" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><div class="row"><button class="btn" id="xs">Bilmiyorum</button><button class="btn p" id="xc">Kontrol et</button></div>`;
+  }else{
+    body=`<div class="q">${q.p}</div><div class="opts">${q.o.map((o,k)=>`<button class="opt${d?(o.ok?' ok':k===EX.pick?' bad':''):''}" data-k="${k}" ${d?'disabled':''}>${o.h}</button>`).join('')}</div>${d?`${fb}${q.e}</div><button class="btn p" id="xn" style="width:100%">Sonraki</button>`:''}`;
+  }
+  st.innerHTML=head+body;
+  st.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(!EX.done)examJudge(+b.dataset.k)});
+  const a=$('#xa');if(a){setTimeout(()=>a.focus(),30);a.onkeydown=e=>{if(e.key==='Enter'&&a.value.trim())examJudge(a.value)};$('#xc').onclick=()=>{a.value.trim()?examJudge(a.value):a.focus()};$('#xs').onclick=()=>examJudge(null)}
+  const n=$('#xn');if(n){n.onclick=()=>{EX.i++;EX.done=false;EX.pick=null;examDraw()};n.focus()}
+}
+function examEnd(){
+  const n=EX.qs.length,sc=EX.res.filter(r=>r.ok).length,pct=Math.round(sc/n*100),secs={},wrong=EX.res.filter(r=>!r.ok);
+  EX.res.forEach(r=>{const s=secs[r.q.sec]||(secs[r.q.sec]=[0,0]);s[1]++;if(r.ok)s[0]++});
+  $('#stage').innerHTML=`<div class="q"><div class="big">${sc}/${n}</div><p>%${pct} · ${pct>=85?'Çok iyi, sınava hazırsın':pct>=60?'İyi gidiyorsun, yanlışlarını tekrar et':'Biraz daha çalış, yanlışlarını tekrar et'}</p></div>
+  <div class="tw"><table><thead><tr><th>Bölüm</th><th>Doğru</th></tr></thead><tbody>${Object.keys(secs).map(k=>`<tr><td>${esc(k)}</td><td>${secs[k][0]}/${secs[k][1]}</td></tr>`).join('')}</tbody></table></div>
+  ${wrong.length?`<div class="nh">Yanlışların</div><div class="tw"><table>${wrong.map(r=>`<tr><td>${r.q.e}</td></tr>`).join('')}</table></div>`:''}
+  <div class="row" style="margin-top:12px">${wrong.length?'<button class="btn" id="xr">Yanlışları tekrar et</button>':''}<button class="btn p" id="xnew">Yeni sınav</button></div>`;
+  const r=$('#xr');if(r)r.onclick=()=>examRun(wrong.map(x=>x.q));
+  $('#xnew').onclick=()=>examRun(examBuild());
+}
+
+start();
 </script></body></html>
